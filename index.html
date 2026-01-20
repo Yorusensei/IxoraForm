@@ -4,119 +4,196 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ixora Clan Application</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <style>
+    :root {
+        --discord-blurple: #5865F2;
+        --dark-bg: #2b2d31;
+        --darker-bg: #1e1f22;
+        --text-gray: #b5bac1;
+        --input-bg: #1e1f22;
+    }
+
     body { 
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-        /* --- ADDED BACKGROUND CODE --- */
-        background-image: url('BACKGROUND.png');  
-        background-size: cover;        /* Makes image cover the whole screen */
-        background-position: center;   /* Centers the image */
-        background-attachment: fixed;  /* Keeps image still when scrolling */
-        background-repeat: no-repeat;
-        /* ------------------------------ */
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('BACKGROUND.png');  
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
         margin: 0;
-        padding: 20px;
+        padding: 40px 20px;
         display: flex;
         justify-content: center;
-        align-items: center;           /* Vertically centers the form */
-        min-height: 100vh;             /* Ensures body is at least screen height */
+        color: white;
     }
 
-    /* THE CONTAINER */
     .form-container {
-        background: rgba(255, 255, 255, 0.9); /* White with 90% opacity to see background through */
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        background: var(--dark-bg);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         width: 100%;
-        max-width: 500px;
+        max-width: 600px;
+        border: 1px solid rgba(255,255,255,0.05);
     }
 
-    h1 { font-size: 24px; text-align: center; color: #333; }
-    p { text-align: center; color: #666; font-size: 14px; }
-    
     .header-image {
         display: block;
-        margin: 0 auto 20px auto;
-        width: 150px;
+        margin: 0 auto 15px auto;
+        width: 120px;
         height: auto;
+        filter: drop-shadow(0 0 10px var(--discord-blurple));
     }
 
-    label { display: block; margin-top: 15px; font-weight: bold; color: #444; }
-    input { 
+    h1 { font-size: 28px; text-align: center; margin-bottom: 10px; color: #fff; }
+    .subtitle { text-align: center; color: var(--text-gray); font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+
+    label { display: block; margin-top: 20px; font-size: 11px; font-weight: bold; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    input[type="text"] { 
         width: 100%; 
-        padding: 10px; 
-        margin-top: 5px; 
-        border: 1px solid #ccc; 
+        padding: 12px; 
+        margin-top: 8px; 
+        border: none;
+        background: var(--input-bg);
+        color: white;
         border-radius: 4px;
         box-sizing: border-box; 
+        font-size: 15px;
     }
 
-    .row { display: flex; gap: 10px; }
-    .row input { flex: 1; }
+    input[type="text"]:focus { outline: 1px solid var(--discord-blurple); }
 
-    @media (max-width: 480px) {
-        .row { flex-direction: column; gap: 0; }
-        .form-container { padding: 15px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .row > div { flex: 1; min-width: 120px; }
+
+    /* UPLOAD BOX STYLE */
+    .upload-box {
+        margin-top: 10px;
+        border: 2px dashed #444;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        background: rgba(0,0,0,0.2);
+        cursor: pointer;
+        transition: 0.3s;
     }
+
+    .upload-box:hover { border-color: var(--discord-blurple); background: rgba(88, 101, 242, 0.05); }
+
+    #imagePreview img {
+        margin-top: 15px;
+        max-width: 100%;
+        border-radius: 8px;
+        border: 1px solid #444;
+    }
+
+    .submit-btn {
+        width: 100%;
+        margin-top: 30px;
+        background-color: var(--discord-blurple);
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+        text-transform: uppercase;
+    }
+
+    .submit-btn:hover { background-color: #4752c4; transform: translateY(-1px); }
+    .footer-note { font-size: 11px; text-align: center; margin-top: 15px; color: #ff4747; font-weight: bold; }
 </style>
 </head>
 <body>
 
 <div class="form-container">
     <img src="logo.jpg" alt="Ixora Logo" class="header-image">
-
     <h1>Ixora Clan Application</h1>
-    <p>Before you apply please put IX_ beside your name.
-        If you can't still change name due to 7 days mandatory please put (unofficial) 
-        Please complete the form below to apply for membership.
+    <p class="subtitle">
+        Put <b>IX_</b> beside your name. If you can't change it yet, use <b>(unofficial)</b>.<br>
+        Complete the form below, then take a screenshot.
     </p>
 
     <form>
-        <div class="column">
-        <label>In-Game Name & Username & Display name</label>
-        <input type="text" placeholder="In-game-name">
-        <input type="text" placeholder="Username">
-        <input type="text" placeholder="Display name">
-        
+        <label>Identity & In-Game Info</label>
+        <input type="text" placeholder="In-Game Name">
+        <div class="row">
+            <input type="text" placeholder="Roblox Username">
+            <input type="text" placeholder="Display Name">
         </div>
 
-        <label>Total Power</label>
-        <input type="text" placeholder="Enter your answer">
+        <div class="row">
+            <div>
+                <label>Total Power</label>
+                <input type="text" placeholder="e.g. 10M+">
+            </div>
+            <div>
+                <label>Rank</label>
+                <input type="text" placeholder="e.g. Grandmaster">
+            </div>
+            <div>
+                <label>Age</label>
+                <input type="text" placeholder="Your age">
+            </div>
+        </div>
 
-        <label>Rank</label>
-        <input type="text" placeholder="Enter your answer">
-
-        <label>Age</label>
-        <input type="text" placeholder="Enter your answer">
-
-        <label>Activeness</label>
-        <input type="text" placeholder="Rate 1-10">
+        <div class="row">
+            <div style="flex: 2;">
+                <label>Activeness</label>
+                <input type="text" placeholder="Rate 1-10">
+            </div>
+            <div style="flex: 2;">
+                <label>Discord Tag</label>
+                <input type="text" placeholder="User#0000">
+            </div>
+            <div style="flex: 2;">
+                <label>Facebook Name</label>
+                <input type="text" placeholder="Your FB Profile">
+            </div>
+        </div>
 
         <label>Date Joined</label>
         <div class="row">
-            <input type="text" placeholder="Month">
-            <input type="text" placeholder="Day">
-            <input type="text" placeholder="Year">
+            <div style="flex: 1;"><input type="text" placeholder="Month"></div>
+            <div style="flex: 1;"><input type="text" placeholder="Day"></div>
+            <div style="flex: 1;"><input type="text" placeholder="Year"></div>
         </div>
-        
-        <label>Roblox username</label>
-        <input type="text" placeholder="Enter your answer">
 
-        <div class="column">
-        <label>Discord</label>
-        <input type="text" placeholder="Discord username">
-        <label>Facebook</label>
-        <input type="text" placeholder="Facebook name">
-        
+        <label>Upload Profile/Rank Proof</label>
+        <div class="upload-box" onclick="document.getElementById('imageUpload').click()">
+            <i class="bi bi-cloud-arrow-up" style="font-size: 28px; color: var(--discord-blurple);"></i>
+            <p style="margin: 5px 0; font-size: 13px; color: var(--text-gray);">Click to upload screenshot</p>
+            <input type="file" id="imageUpload" accept="image/*" hidden>
+            <div id="imagePreview"></div>
         </div>
 
         <label>Why should we accept you?</label>
-        <input type="text" placeholder="Enter your answer">
-         
-        <input type="submit" value="TAKE A SCREEN SHOT KASI CUZ WE BROKE SALAMAT!" style="margin-top: 20px; background-color: #5865F2; color: white; border: none; cursor: pointer; font-weight: bold; padding: 12px; border-radius: 4px;">
+        <input type="text" placeholder="Enter your answer...">
+
+        <button type="button" class="submit-btn" onclick="window.scrollTo(0,0)">READY FOR SCREENSHOT</button>
+        <p class="footer-note">TAKE A SCREENSHOT KASI CUZ WE BROKE SALAMAT!</p>
     </form>
 </div>
+
+<script>
+    // Script to handle the live image preview
+    const imageUpload = document.getElementById('imageUpload');
+    const imagePreview = document.getElementById('imagePreview');
+
+    imageUpload.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 </body>
 </html>
