@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ixora Clan Application</title>
+<style>
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background-color: #f4f4f9; /* Light background for contrast */
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* THE CONTAINER: This prevents stretching on PC */
+    .form-container {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 500px; /* Limits width on PC */
+    }
+
+    h1 { font-size: 24px; text-align: center; color: #333; }
+    p { text-align: center; color: #666; font-size: 14px; }
+    
+    .header-image {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 150px; /* Adjusted for better scale */
+        height: auto;
+    }
+
+    label { display: block; margin-top: 15px; font-weight: bold; color: #444; }
+    input { 
+        width: 100%; 
+        padding: 10px; 
+        margin-top: 5px; 
+        border: 1px solid #ccc; 
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+    /* RESPONSIVE ROWS: Stack on top of each other on small phones */
+    .row { 
+        display: flex; 
+        gap: 10px; 
+    }
+    .row input { flex: 1; }
+
+    @media (max-width: 480px) {
+        .row {
+            flex-direction: column; /* Stacks Month/Day/Year on small phones */
+            gap: 0;
+        }
+        .form-container {
+            padding: 15px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <img src="C:\Users\Dave\OneDrive\Pictures\LOGOOOOO.jpg" alt="Ixora Logo" class="header-image">
+
+    <h1>Ixora Clan Application</h1>
+    <p>Please complete the form below to apply for membership.</p>
+
+    <form>
+        <label>In-Game Name</label>
+        <input type="text" placeholder="In-game-name">
+
+        <label>Date Joined</label>
+        <div class="row">
+            <input type="text" placeholder="Month">
+            <input type="text" placeholder="Day">
+            <input type="text" placeholder="Year">
+        </div>
+
+        <label>How do you handle stress?</label>
+        <input type="text" placeholder="Enter your answer">
+
+        <label>Why should we accept you?</label>
+        <input type="text" placeholder="Enter your answer">
+       
+        <label>Email Address</label>
+        <input type="email" placeholder="Email Address">
+        
+        <input type="submit" value="Submit Application" style="margin-top: 20px; background-color: #5865F2; color: white; border: none; cursor: pointer; font-weight: bold;">
+    </form>
+</div>
+
+</body>
+</html>

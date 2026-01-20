@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open IXORAFORM.html in Opera GX",
+            "file": "c:\\Users\\Dave\\OneDrive\\Documents\\AFSE IXORA FORM\\IXORAFORM.html",
+            "runtimeExecutable": "C:\\Users\\Dave\\AppData\\Local\\Programs\\Opera GX\\launcher.exe"
+        }
+    ]
+}
