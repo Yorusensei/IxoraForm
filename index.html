@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ixora Clan Application</title>
+<style>
+    body { 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        /* --- ADDED BACKGROUND CODE --- */
+        background-image: url('BACKGROUND.png');  
+        background-size: cover;        /* Makes image cover the whole screen */
+        background-position: center;   /* Centers the image */
+        background-attachment: fixed;  /* Keeps image still when scrolling */
+        background-repeat: no-repeat;
+        /* ------------------------------ */
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;           /* Vertically centers the form */
+        min-height: 100vh;             /* Ensures body is at least screen height */
+    }
+
+    /* THE CONTAINER */
+    .form-container {
+        background: rgba(255, 255, 255, 0.9); /* White with 90% opacity to see background through */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        width: 100%;
+        max-width: 500px;
+    }
+
+    h1 { font-size: 24px; text-align: center; color: #333; }
+    p { text-align: center; color: #666; font-size: 14px; }
+    
+    .header-image {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: 150px;
+        height: auto;
+    }
+
+    label { display: block; margin-top: 15px; font-weight: bold; color: #444; }
+    input { 
+        width: 100%; 
+        padding: 10px; 
+        margin-top: 5px; 
+        border: 1px solid #ccc; 
+        border-radius: 4px;
+        box-sizing: border-box; 
+    }
+
+    .row { display: flex; gap: 10px; }
+    .row input { flex: 1; }
+
+    @media (max-width: 480px) {
+        .row { flex-direction: column; gap: 0; }
+        .form-container { padding: 15px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <img src="C:\Users\Dave\OneDrive\Pictures\LOGOOOOO.jpg" alt="Ixora Logo" class="header-image">
+
+    <h1>Ixora Clan Application</h1>
+    <p>Before you apply please put IX_ beside your name.
+        If you can't still change name due to 7 days mandatory please put (unofficial) 
+        Please complete the form below to apply for membership.
+    </p>
+
+    <form>
+        <div class="column">
+        <label>In-Game Name & Username & Display name</label>
+        <input type="text" placeholder="In-game-name">
+        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Display name">
+        
+        </div>
+
+        <label>Total Power</label>
+        <input type="text" placeholder="Enter your answer">
+
+        <label>Rank</label>
+        <input type="text" placeholder="Enter your answer">
+
+        <label>Age</label>
+        <input type="text" placeholder="Enter your answer">
+
+        <label>Activeness</label>
+        <input type="text" placeholder="Rate 1-10">
+
+        <label>Date Joined</label>
+        <div class="row">
+            <input type="text" placeholder="Month">
+            <input type="text" placeholder="Day">
+            <input type="text" placeholder="Year">
+        </div>
+        
+        <label>Roblox username</label>
+        <input type="text" placeholder="Enter your answer">
+
+        <div class="column">
+        <label>Discord</label>
+        <input type="text" placeholder="Discord username">
+        <label>Facebook</label>
+        <input type="text" placeholder="Facebook name">
+        
+        </div>
+
+        <label>Why should we accept you?</label>
+        <input type="text" placeholder="Enter your answer">
+         
+        <input type="submit" value="TAKE A SCREEN SHOT KASI CUZ WE BROKE SALAMAT!" style="margin-top: 20px; background-color: #5865F2; color: white; border: none; cursor: pointer; font-weight: bold; padding: 12px; border-radius: 4px;">
+    </form>
+</div>
+
+</body>
+</html>
