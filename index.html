@@ -1,116 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ixora Clan Application</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<style>
-    :root {
-        --discord-blurple: #5865F2;
-        --dark-bg: #2b2d31;
-        --darker-bg: #1e1f22;
-        --text-gray: #b5bac1;
-        --input-bg: #1e1f22;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ixora Clan | Application</title>
+    <link rel="icon" type="image/png" href="logo.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    body { 
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('BACKGROUND.png');  
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        margin: 0;
-        padding: 40px 20px;
-        display: flex;
-        justify-content: center;
-        color: white;
-    }
+    <style>
+        :root { 
+            --discord-dark: #000000; 
+            --text-gray: #b5bac1; 
+            --radius: 25px;
+            --discord-blurple: #5865F2; 
+        }
 
-    .form-container {
-        background: var(--dark-bg);
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        width: 100%;
-        max-width: 600px;
-        border: 1px solid rgba(255,255,255,0.05);
-    }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('BACKGROUND.png');  
+            background-size: cover; background-position: center; background-attachment: fixed;
+            margin: 0; display: flex; justify-content: center; align-items: flex-start; 
+            min-height: 100vh; color: white; padding: 40px 20px;
+            cursor: pointer;
+        }
 
-    .header-image {
-        display: block;
-        margin: 0 auto 15px auto;
-        width: 120px;
-        height: auto;
-        filter: drop-shadow(0 0 10px var(--discord-blurple));
-    }
+        /* --- RGB SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(#ff0000, #00ff00, #0000ff, #ffff00); 
+            border-radius: 10px; 
+        }
 
-    h1 { font-size: 28px; text-align: center; margin-bottom: 10px; color: #fff; }
-    .subtitle { text-align: center; color: var(--text-gray); font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
+        /* --- CONTAINER STYLE --- */
+        .form-container {
+            position: relative; 
+            background: var(--discord-dark); 
+            padding: 50px 40px; 
+            border-radius: var(--radius); 
+            width: 100%; 
+            max-width: 600px; 
+            overflow: hidden; 
+            z-index: 10; 
+            box-shadow: 0 10px 50px rgba(0,0,0,0.9);
+            text-align: left;
+            animation: fadeIn 0.6s ease-out;
+        }
 
-    label { display: block; margin-top: 20px; font-size: 11px; font-weight: bold; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
-    
-    input[type="text"] { 
-        width: 100%; 
-        padding: 12px; 
-        margin-top: 8px; 
-        border: none;
-        background: var(--input-bg);
-        color: white;
-        border-radius: 4px;
-        box-sizing: border-box; 
-        font-size: 15px;
-    }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    input[type="text"]:focus { outline: 1px solid var(--discord-blurple); }
+        /* RGB Border */
+        .form-container::before { content: ''; position: absolute; z-index: -2; left: -50%; top: -50%; width: 200%; height: 200%; background-image: conic-gradient(#ff0000, #00ff00, #0000ff, #ffff00, #ff0000); animation: rotate 15s linear infinite; }
+        .form-container::after { content: ''; position: absolute; z-index: -1; left: 4px; top: 4px; width: calc(100% - 8px); height: calc(100% - 8px); background: var(--discord-dark); border-radius: calc(var(--radius) - 4px); }
 
-    .row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .row > div { flex: 1; min-width: 120px; }
+        .header-image { display: block; margin: 0 auto 25px auto; width: 120px; border-radius: 15px; filter: drop-shadow(0 0 10px var(--discord-blurple)); }
+        h1 { font-size: 28px; font-weight: 800; margin-top: 0; text-align: center; }
+        .subtitle { color: var(--text-gray); font-size: 15px; text-align: center; margin-bottom: 35px; line-height: 1.6; }
 
-    /* UPLOAD BOX STYLE */
-    .upload-box {
-        margin-top: 10px;
-        border: 2px dashed #444;
-        border-radius: 8px;
-        padding: 20px;
-        text-align: center;
-        background: rgba(0,0,0,0.2);
-        cursor: pointer;
-        transition: 0.3s;
-    }
+        /* --- FORM FIELDS --- */
+        label { display: block; margin-top: 25px; font-size: 12px; font-weight: bold; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
+        
+        input[type="text"] { 
+            width: 100%; padding: 15px; margin-top: 8px; border: none;
+            background: #111; color: white; border-radius: 12px;
+            box-sizing: border-box; font-size: 15px; border: 1px solid #333;
+        }
+        input[type="text"]:focus { border-color: #ff0000; outline: none; }
 
-    .upload-box:hover { border-color: var(--discord-blurple); background: rgba(88, 101, 242, 0.05); }
+        .row { display: flex; gap: 15px; flex-wrap: wrap; }
+        .row > div { flex: 1; min-width: 140px; }
 
-    #imagePreview img {
-        margin-top: 15px;
-        max-width: 100%;
-        border-radius: 8px;
-        border: 1px solid #444;
-    }
+        /* UPLOAD BOX */
+        .upload-box {
+            margin-top: 15px; border: 2px dashed #444; border-radius: 15px;
+            padding: 30px; text-align: center; background: rgba(255,255,255,0.03);
+            cursor: pointer; transition: 0.3s;
+        }
+        .upload-box:hover { border-color: #00ff00; background: rgba(0, 255, 0, 0.05); }
+        #imagePreview img { margin-top: 15px; max-width: 100%; border-radius: 12px; border: 1px solid #444; }
 
-    .submit-btn {
-        width: 100%;
-        margin-top: 30px;
-        background-color: var(--discord-blurple);
-        color: white;
-        border: none;
-        padding: 14px;
-        border-radius: 4px;
-        font-weight: bold;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.2s;
-        text-transform: uppercase;
-    }
+        /* --- BUTTONS --- */
+        .submit-btn {
+            position: relative; width: 100%; margin-top: 40px; padding: 20px;
+            background: transparent; color: white; font-weight: 800; font-size: 17px;
+            border-radius: 15px; z-index: 1; overflow: hidden; border: none; cursor: pointer;
+            text-transform: uppercase; transition: transform 0.2s;
+        }
+        .submit-btn::before { content: ''; position: absolute; z-index: -2; left: -50%; top: -50%; width: 200%; height: 200%; background-image: conic-gradient(#ff0000, #00ff00, #0000ff, #ff00ff, #ff0000); animation: rotate 8s linear infinite; }
+        .submit-btn::after { content: ''; position: absolute; z-index: -1; left: 3px; top: 3px; width: calc(100% - 6px); height: calc(100% - 6px); background: #000; border-radius: 13px; }
+        .submit-btn:hover { transform: scale(1.02); }
 
-    .submit-btn:hover { background-color: #4752c4; transform: translateY(-1px); }
-    .footer-note { font-size: 11px; text-align: center; margin-top: 15px; color: #ff4747; font-weight: bold; }
-</style>
+        .mute-toggle { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: 1px solid #444; color: white; font-size: 20px; }
+        .footer-note { font-size: 12px; text-align: center; margin-top: 20px; color: #ff4747; font-weight: bold; }
+
+        /* FIRE CANVAS */
+        #fireCanvas { position: fixed; bottom: 0; left: 0; width: 100%; height: 400px; z-index: 1; pointer-events: none; }
+    </style>
 </head>
 <body>
 
+<button class="mute-toggle" id="muteBtn"><i class="bi bi-volume-mute-fill" id="muteIcon"></i></button>
+
 <div class="form-container">
-    <img src="logo.jpg" alt="Ixora Logo" class="header-image">
+    <img src="logo.jpg" class="header-image">
     <h1>Ixora Clan Application</h1>
     <p class="subtitle">
         Put <b>IX_</b> beside your name. If you can't change it yet, use <b>(unofficial)</b>.<br>
@@ -164,8 +157,8 @@
 
         <label>Upload Profile/Rank Proof</label>
         <div class="upload-box" onclick="document.getElementById('imageUpload').click()">
-            <i class="bi bi-cloud-arrow-up" style="font-size: 28px; color: var(--discord-blurple);"></i>
-            <p style="margin: 5px 0; font-size: 13px; color: var(--text-gray);">Click to upload screenshot</p>
+            <i class="bi bi-cloud-arrow-up-fill" style="font-size: 32px; color: var(--discord-blurple);"></i>
+            <p style="margin: 10px 0; font-size: 14px; color: var(--text-gray);">Tap to upload proof</p>
             <input type="file" id="imageUpload" accept="image/*" hidden>
             <div id="imagePreview"></div>
         </div>
@@ -174,15 +167,36 @@
         <input type="text" placeholder="Enter your answer...">
 
         <button type="button" class="submit-btn" onclick="window.scrollTo(0,0)">READY FOR SCREENSHOT</button>
-        <p class="footer-note">TAKE A SCREENSHOT KASI CUZ WE BROKE SALAMAT!</p>
+        <p class="footer-note">TAKE A SCREENSHOT CUZ WE DON'D HAB DOMAIN WE BROKE SALAMAT!</p>
     </form>
 </div>
 
+<canvas id="fireCanvas"></canvas>
+<audio id="bgMusic" loop preload="auto"><source src="IXORA EY.mp3" type="audio/mpeg"></audio>
+
 <script>
-    // Script to handle the live image preview
+    const music = document.getElementById('bgMusic');
+    const muteIcon = document.getElementById('muteIcon');
+    music.volume = 0.4;
+
+    function startMusic() {
+        music.play().then(() => {
+            muteIcon.className = 'bi bi-volume-up-fill';
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('touchstart', startMusic);
+        }).catch(() => {});
+    }
+    document.addEventListener('click', startMusic);
+    document.addEventListener('touchstart', startMusic);
+
+    document.getElementById('muteBtn').onclick = (e) => {
+        e.stopPropagation();
+        if (music.paused) { music.play(); muteIcon.className = 'bi bi-volume-up-fill'; }
+        else { music.pause(); muteIcon.className = 'bi bi-volume-mute-fill'; }
+    };
+
     const imageUpload = document.getElementById('imageUpload');
     const imagePreview = document.getElementById('imagePreview');
-
     imageUpload.addEventListener('change', function() {
         const file = this.files[0];
         if (file) {
@@ -193,6 +207,64 @@
             reader.readAsDataURL(file);
         }
     });
+
+    // --- HIGH INTENSITY FIRE ENGINE ---
+    const canvas = document.getElementById('fireCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    function resize() { canvas.width = window.innerWidth; canvas.height = 400; }
+    window.onresize = resize; resize();
+
+    class Flame {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = canvas.height + Math.random() * 80;
+            this.speedY = Math.random() * 3 + 1.5; // Faster rising
+            this.speedX = (Math.random() - 0.5) * 2;
+            this.size = Math.random() * 30 + 15; // Larger particles
+            this.life = 1;
+            this.decay = Math.random() * 0.012 + 0.006;
+        }
+        update() { 
+            this.y -= this.speedY; 
+            this.x += this.speedX; 
+            this.life -= this.decay; 
+            if (this.size > 0.5) this.size -= 0.18; 
+        }
+        draw() {
+            ctx.globalCompositeOperation = "lighter";
+            // Randomize between Orange, Deep Red, and Yellow for a wilder look
+            const r = 255;
+            const g = Math.floor(Math.random() * 120 + 20);
+            const b = 0;
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.life})`;
+            ctx.beginPath(); 
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
+            ctx.fill();
+        }
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Spawn more particles per frame for "Fuller" fire
+        if (particles.length < 550) { // Limit increased from 200 to 550
+            for(let i=0; i < 12; i++) { // Spawn rate increased from 5 to 12
+                particles.push(new Flame());
+            }
+        }
+        
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update(); 
+            particles[i].draw();
+            if (particles[i].life <= 0) { 
+                particles.splice(i, 1); 
+                i--; 
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
 </script>
 
 </body>
